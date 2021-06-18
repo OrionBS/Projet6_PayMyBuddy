@@ -14,13 +14,15 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-@Entity(name = "journal")
-public class Journal {
+@Entity(name = "bank_journal")
+public class BankJournal {
 
     @Id
     @GeneratedValue
     private Integer id;
-    @ElementCollection
-    private List<JournalTransaction> journalTransactions;
+    private String date;
+    private String description;
+    private String who;
+    private Type type;
     private float amount;
 }

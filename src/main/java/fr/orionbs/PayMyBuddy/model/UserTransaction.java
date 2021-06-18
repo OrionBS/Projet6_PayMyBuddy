@@ -16,6 +16,8 @@ public class UserTransaction {
     private String date;
     private String description;
     private float price;
+    private Type type;
     private String sendTo;
+    private String sendBy;
 
 }

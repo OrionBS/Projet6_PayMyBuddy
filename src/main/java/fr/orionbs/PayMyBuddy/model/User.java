@@ -30,6 +30,4 @@ public class User {
     private List<String> friends;
     @ElementCollection
     private List<UserTransaction> userTransactions;
-    @ElementCollection
-    private List<JournalTransaction> journalTransactions;
 }
