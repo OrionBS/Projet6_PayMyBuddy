@@ -19,9 +19,20 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
     public User addUser(User user) {
         log.info("Inscription de "+user);
-        return userRepository.save(user);
+        User userAlreadyIn = userRepository.findByEmail(user.getEmail());
+        if(userAlreadyIn == null) {
+            log.info("Nouvel utilisateur : "+user);
+            return userRepository.save(user);
+        }
+        log.info("Utilisateur déjà présent. "+userAlreadyIn);
+        return userAlreadyIn;
     }
 
     @Override
@@ -38,5 +49,18 @@ public class UserServiceImpl implements UserService {
         user.setFriends(listOfFriends);
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public String deleteUsers() {
+        log.info("Suppression des utilisateurs.");
+        userRepository.deleteAll();
+        return "Utilisateurs supprimés.";
+    }
+
+    @Override
+    public User findUser(String email) {
+        log.info("Recherche d'un utilisateur :");
+        return userRepository.findByEmail(email);
     }
 }
