@@ -15,10 +15,10 @@ public class NewUserPostConstruct {
     @Autowired
     UserService userService;
 
-    @PostConstruct
+    /*@PostConstruct
     public void addingUser() {
         log.info("Post Construct : Nouvel Utilisateur.");
         User user = new User(null,"work@orionbs.fr","jackjack","Orion","Beauny",10000,new ArrayList<>(),new ArrayList<>());
         userService.addUser(user);
-    };
+    };*/
 }

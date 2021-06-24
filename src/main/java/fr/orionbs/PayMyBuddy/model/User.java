@@ -13,7 +13,7 @@ import java.util.List;
 @ToString
 @Entity(name = "user")
 @Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"email","password","firstName","lastName"})
+        @UniqueConstraint(columnNames = {"email","password"})
 })
 public class User {
 
@@ -26,8 +26,11 @@ public class User {
     private String firstName;
     private String lastName;
     private float amount;
-    @ElementCollection
-    private List<String> friends;
-    @ElementCollection
-    private List<UserTransaction> userTransactions;
+    @OneToMany
+    @JoinColumn(name = "userIdFk")
+    private List<Friend> friends;
+
+    @OneToMany
+    @JoinColumn(name = "userIdFk")
+    private List<Transaction> transactions;
 }
