@@ -1,4 +1,5 @@
 @media all and (min-width: 1400px) {
+<<<<<<< HEAD
   body {
     position: absolute;
     width: 100%;
@@ -73,6 +74,9 @@
     background-color: #ffffff;
     padding: 1rem;
   }
+=======
+
+>>>>>>> f676fed6685cc8faa507c579fd042dec9bc6fba5
 }
 @media all and (min-width: 1200px) and (max-width: 1400px) {
 
@@ -88,4 +92,8 @@
 }
 @media all and (max-width: 576px) {
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f676fed6685cc8faa507c579fd042dec9bc6fba5
