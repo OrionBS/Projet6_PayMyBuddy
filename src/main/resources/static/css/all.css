@@ -87,6 +87,29 @@ div.userToUser {
 form.formUser {
   grid-area: fU;
 }
+label.friendLabel {
+  grid-area: fL;
+}
+select.friendInput {
+  grid-area: fI;
+}
+label.descLabel {
+  grid-area: dL;
+}
+input.descInput {
+  grid-area: dI;
+}
+label.amountLabel {
+  grid-area: aL;
+}
+input.amountInput {
+  grid-area: aI;
+}
+button.btnUser {
+  grid-area: bU;
+}
+
+
 form.formBank {
   grid-area: fB;
 }
@@ -95,4 +118,21 @@ div.userBank {
 }
 div.allTransfers {
   grid-area: aT;
+}
+
+div.formFriends {
+  grid-area: fF;
+}
+div.allFriends {
+  grid-area: aF;
+}
+
+div.profileDetails {
+  grid-area: pD;
+}
+div.profileEdit {
+  grid-area: pE;
+}
+form.formProfile {
+  grid-area: fP;
 }

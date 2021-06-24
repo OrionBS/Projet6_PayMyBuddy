@@ -39,11 +39,13 @@
 
   div.content {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas:
-    "uTu aT"
-    "bT aT";
+    "pD"
+    "pD"
+    "pE"
+    "pE";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -52,10 +54,41 @@
 
 
 
-  div.userToUser {
+  div.profileDetails {
     border-radius: 1rem;
     background-color: #ffffff;
     padding: 1rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title title title"
+    "lU lU lU"
+    "lU lU lU"
+    "lU lU lU"
+    "email fN lN"
+    "email fN lN";
+  }
+  i.logoUser {
+    font-size: 150px;
+    justify-self: center;
+    align-self: center;
+  }
+  p.profileText {
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+  }
+
+
+
+  div.profileEdit {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
     display: grid;
 
     grid-template-columns: 1fr;
@@ -63,44 +96,19 @@
     grid-gap: 1rem;
     grid-template-areas:
     "title"
-    "fU"
-    "fU"
-    "fU"
-    "fU"
-    "fU";
+    "fP"
+    "fP"
+    "fP"
+    "fP"
+    "fP";
   }
-  label.friendLabel {
-    display: block;
-    font-size: 20px;
-    padding-bottom: 0.5rem;
-  }
-  select.friendInput {
-    display: block;
-    border: 1px solid #e3e4eb;
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    width: 100%;
-  }
-  label.descLabel {
+  label.emailLabel, label.firstNameLabel, label.lastNameLabel {
     display: block;
     font-size: 20px;
     padding-top: 1rem;
     padding-bottom: 0.5rem;
   }
-  input.descInput {
-    display: block;
-    padding: 0.5rem;
-    border: 1px solid #e3e4eb;
-    border-radius: 0.25rem;
-    width: 100%;
-  }
-  label.amountLabel {
-    display: block;
-    font-size: 20px;
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
-  }
-  input.amountInput {
+  input.emailInput, input.firstNameInput, input.lastNameInput {
     display: block;
     border: 1px solid #e3e4eb;
     border-radius: 0.25rem;
@@ -120,63 +128,10 @@
   }
 
 
-  div.userBank {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "fB"
-    "fB"
-    "fB"
-    "fB"
-    "fB";
-  }
-  p.selectLabel {
-    display: block;
-    font-size: 20px;
-    padding-bottom: 0.5rem;
-  }
 
 
 
-  div.allTransfers {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
 
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(12, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF"
-    "tF";
-  }
-  table.transfers {
-    border-collapse: collapse;
-    align-self: start;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
 
 }
 @media all and (min-width: 1200px) and (max-width: 1400px) {

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- LINK META DATA -->
+    <meta charset="UTF-8">
+    <title>PMB - Profile</title>
+    <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
+
+    <!-- LINK CSS Styles -->
+    <link rel="stylesheet" type="text/css" href="../static/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/all.css">
+
+
+    <!-- LINK FONTS AND ICONS -->
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <menu class="big">
+    <img class="imgResponsive" src="../static/img/logo.png" alt="Logo de PayMyBuddy.">
+    <a class="menuItem" href=""><i class="icon fas fa-home"></i>Home</a>
+    <a class="menuItem" href="/transfer"><i class="icon fas fa-exchange-alt"></i>Transfer</a>
+    <a class="menuItem active" href="/profile"><i class="white icon fas fa-id-card"></i>Profile</a>
+    <a class="menuItem" href="/friends"><i class="icon fas fa-users"></i>Friends</a>
+    <a class="menuItem" href="/logoff"><i class="icon fas fa-sign-out-alt"></i>Log off</a>
+  </menu>
+  <menu class="tiny">
+    <img class="imgResponsive" src="../static/img/logo.png" alt="Logo de PayMyBuddy.">
+    <a class="menuItem" href=""><i class="fas fa-home"></i></a>
+    <a class="menuItem" href="/transfer"><i class="fas fa-exchange-alt"></i></a>
+    <a class="menuItem active" href="/profile"><i class="white fas fa-id-card"></i></a>
+    <a class="menuItem" href="/friends"><i class="fas fa-users"></i></a>
+    <a class="menuItem" href="/logoff"><i class="fas fa-sign-out-alt"></i></a>
+  </menu>
+  <div class="content">
+
+
+
+    <div class="profileDetails">
+      <h1 class="title"><i class="icon fas fa-id-card"></i>Profile Details</h1>
+      <i class="logoUser fas fa-user-circle"></i>
+      <p class="profileText email">email@emailHost.com</p>
+      <p class="profileText fN">firstName</p>
+      <p class="profileText lN">lastName</p>
+    </div>
+
+
+
+    <div class="profileEdit">
+      <h1 class="title"><i class="icon fas fa-edit"></i>Edit Profile</h1>
+      <form class="formProfile" action="profile.html" method="post">
+        <label class="emailLabel" for="email">New or old email :</label>
+        <input class="emailInput" type="email" id="email" name="email" value="">
+        <label class="firstNameLabel" for="fN">New or old firstName :</label>
+        <input class="firstNameInput" type="text" id="fN" name="fN" value="">
+        <label class="lastNameLabel" for="lN">New or old lastName :</label>
+        <input class="lastNameInput" type="text" id="lN" name="lN" value="">
+        <button class="button" type="submit" name="button">Update profile</button>
+      </form>
+    </div>
+
+
+
+  </div>
+
+</body>
+</html>

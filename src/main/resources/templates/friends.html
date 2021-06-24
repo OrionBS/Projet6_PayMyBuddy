@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- LINK META DATA -->
+    <meta charset="UTF-8">
+    <title>PMB - Friends</title>
+    <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
+
+    <!-- LINK CSS Styles -->
+    <link rel="stylesheet" type="text/css" href="../static/css/friends.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/all.css">
+
+
+    <!-- LINK FONTS AND ICONS -->
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <menu class="big">
+    <img class="imgResponsive" src="../static/img/logo.png" alt="Logo de PayMyBuddy.">
+    <a class="menuItem" href=""><i class="icon fas fa-home"></i>Home</a>
+    <a class="menuItem" href="/transfer"><i class="icon fas fa-exchange-alt"></i>Transfer</a>
+    <a class="menuItem" href="/profile"><i class="icon fas fa-id-card"></i>Profile</a>
+    <a class="menuItem active" href="/friends"><i class="white icon fas fa-users"></i>Friends</a>
+    <a class="menuItem" href="/logoff"><i class="icon fas fa-sign-out-alt"></i>Log off</a>
+  </menu>
+  <menu class="tiny">
+    <img class="imgResponsive" src="../static/img/logo.png" alt="Logo de PayMyBuddy.">
+    <a class="menuItem" href=""><i class="fas fa-home"></i></a>
+    <a class="menuItem" href="/transfer"><i class="fas fa-exchange-alt"></i></a>
+    <a class="menuItem" href="/profile"><i class="fas fa-id-card"></i></a>
+    <a class="menuItem active" href="/friends"><i class="white fas fa-users"></i></a>
+    <a class="menuItem" href="/logoff"><i class="fas fa-sign-out-alt"></i></a>
+  </menu>
+  <div class="content">
+
+
+
+    <div class="formFriends">
+      <h1 class="title"><i class="icon fas fa-plus"></i>Add Friend</h1>
+      <form class="formFriend" action="friends.html" method="post">
+        <label class="friendLabel" for="friend">Add a friend's email</label>
+        <input class="friendInput" type="email" id="friend" name="email" value="">
+        <button class="button" type="submit" name="button">Add a friend</button>
+      </form>
+    </div>
+
+
+
+    <div class="allFriends">
+      <h1 class="title"><i class="icon fas fa-users"></i>All Friends</h1>
+      <table class="friends">
+        <tr>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Email</th>
+          <th>Send Again</th>
+        </tr>
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john.doe@email.com</td>
+          <td class="fB">
+            <a class="friendsButton button" href="/transfer?email=john.doe@emailHost.com">Send money</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+
+  </div>
+
+</body>
+</html>
