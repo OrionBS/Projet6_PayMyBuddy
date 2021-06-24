@@ -3,22 +3,21 @@ package fr.orionbs.PayMyBuddy.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Setter
 @Getter
+@Setter
 @ToString
-@Entity(name = "bank_journal")
-public class BankJournal {
+@Entity(name = "friend")
+public class Friend {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @OneToOne
-    private Transaction transaction;
-    private float amount;
+    @ManyToOne
+    @JoinColumn(name = "userIdFk", referencedColumnName = "id")
+    private User user;
 }

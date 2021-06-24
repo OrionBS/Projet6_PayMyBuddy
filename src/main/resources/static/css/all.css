@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Mulish', sans-serif;
+  color: #5F6979;
+}
+.white {
+  color: #ffffff;
+}
+.icon {
+  padding-right: 0.5rem;
+}
+menu.big, menu.tiny {
+  grid-area: menu;
+}
+div.content {
+  grid-area: content;
+}
+div.wallet {
+  grid-area: wallet;
+}
+a.profile {
+  grid-area: profile;
+}
+a.recentTransfer {
+  grid-area: rT;
+}
+div.bestFriends {
+  grid-area: bF;
+}

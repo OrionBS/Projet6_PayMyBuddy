@@ -1,9 +1,9 @@
 package fr.orionbs.PayMyBuddy.service.impl;
 
 import fr.orionbs.PayMyBuddy.model.BankJournal;
-import fr.orionbs.PayMyBuddy.model.Type;
+import fr.orionbs.PayMyBuddy.model.Transaction;
+import fr.orionbs.PayMyBuddy.model.TypeOfTransaction;
 import fr.orionbs.PayMyBuddy.model.User;
-import fr.orionbs.PayMyBuddy.model.UserTransaction;
 import fr.orionbs.PayMyBuddy.repository.BankJournalRepository;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
 import fr.orionbs.PayMyBuddy.service.TransactionService;
@@ -24,25 +24,22 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     UserRepository userRepository;
 
-    @Override
+    /*@Override
     public void BankToUser(String emailUser, float amount) {
         log.info("Service BankToUser:");
 
         String dateNow = LocalDate.now().toString();
 
         log.info("Création de la transaction: BankJournal vers User: "+emailUser);
-        UserTransaction userTransaction = UserTransaction
+        Transaction userTransaction = Transaction
                 .builder()
                 .date(dateNow)
-                .price(amount)
+                .amount(amount)
                 .description("Compte Bancaire de "+emailUser+" vers compte PMB.")
-                .sendTo(emailUser)
-                .sendBy("BankJournal")
-                .type(Type.WITHDRAWAL)
+                .typeOfTransaction(TypeOfTransaction.BankToUser)
                 .build();
 
         User user = userRepository.findByEmail(emailUser);
-        user.getUserTransactions().add(userTransaction);
         user.setAmount(user.getAmount()+amount);
 
         log.info("Mise à jour User : Transaction: "+userTransaction+" Old Amount: "+user.getAmount()+" New Amount: "+(user.getAmount()+amount)+".");
@@ -50,11 +47,11 @@ public class TransactionServiceImpl implements TransactionService {
 
         BankJournal bankJournal = BankJournal
                 .builder()
-                .date(dateNow)
+                (dateNow)
                 .description("Compte Bancaire de "+emailUser+" vers compte PMB.")
                 .who(emailUser)
                 .amount(amount)
-                .type(Type.WITHDRAWAL)
+                .type(TypeOfTransaction.WITHDRAWAL)
                 .build();
 
         log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
@@ -96,11 +93,21 @@ public class TransactionServiceImpl implements TransactionService {
                 .description("Compte Bancaire de "+emailUser+" vers compte PMB.")
                 .who(emailUser)
                 .amount(amount)
-                .type(Type.WITHDRAWAL)
+                .type(TypeOfTransaction.WITHDRAWAL)
                 .build();
 
         log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
         bankJournalRepository.save(bankJournal);
+    }*/
+
+    @Override
+    public void BankToUser(String emailUser, float amount) {
+
+    }
+
+    @Override
+    public void UserToBank(String emailUser, float amount) {
+
     }
 
     @Override
