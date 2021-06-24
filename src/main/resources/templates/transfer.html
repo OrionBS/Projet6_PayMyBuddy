@@ -7,7 +7,7 @@
     <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
 
     <!-- LINK CSS Styles -->
-    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/transfer.css">
     <link rel="stylesheet" type="text/css" href="../static/css/all.css">
 
 
@@ -23,7 +23,7 @@
     <a class="menuItem active" href=""><i class="icon white fas fa-home"></i>Home</a>
     <a class="menuItem" href="/transfer"><i class="icon fas fa-exchange-alt"></i>Transfer</a>
     <a class="menuItem" href="/profile"><i class="icon fas fa-id-card"></i>Profile</a>
-    <a class="menuItem" href="/contact"><i class="icon fas fa-users"></i>Contact</a>
+    <a class="menuItem" href="/contact"><i class="icon fas fa-users"></i>Friends</a>
     <a class="menuItem" href="/logoff"><i class="icon fas fa-sign-out-alt"></i>Log off</a>
   </menu>
   <menu class="tiny">
@@ -35,17 +35,49 @@
     <a class="menuItem" href="/logoff"><i class="fas fa-sign-out-alt"></i></a>
   </menu>
   <div class="content">
-    <div class="wallet">
-      <h1><i class="icon fas fa-wallet"></i> Wallet</h1>
+
+
+
+    <div class="userToUser">
+      <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Friend Transfer</h1>
+      <form class="formUser" action="transfer.html" method="post">
+        <label for="friend">Choose a friend :</label>
+        <select id="friend" name="email">
+          <option value="">No friend selected</option>
+          <option value="tyler.hawks@email.com">Tyler Hawks</option>
+          <option value="john.doe@email.com">John Doe</option>
+          <option value="tom.hanks@email.com">Tom Hanks</option>
+        </select>
+      </form>
     </div>
-    <a class="profile" href="/profile">
-      <h1><i class="icon fas fa-id-card"></i> Profile</h1>
-    </a>
-    <a class="recentTransfer" href="/transfer">
-      <h1><i class="icon fas fa-exchange-alt"></i> Recent Transfer</h1>
-    </a>
-    <div class="bestFriends">
-      <h1><i class="icon fas fa-thumbs-up"></i> Best Friends</h1>
+
+
+
+    <div class="userBank">
+      <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Bank Transfer</h1>
+      <form class="formBank" action="transfer.html" method="post">
+
+      </form>
+    </div>
+
+
+
+    <div class="allTransfers">
+      <h1 class="title"><i class="icon fas fa-exchange-alt"></i>All Transfers</h1>
+      <table class="transfers">
+         <tr>
+           <th>Collector</th>
+           <th>Sender</th>
+           <th>Description</th>
+           <th>Amount</th>
+         </tr>
+         <tr>
+           <td>John</td>
+           <td>Bank</td>
+           <td>Send money to his bank</td>
+           <td>1000,00 €</td>
+         </tr>
+      </table>
     </div>
   </div>
 

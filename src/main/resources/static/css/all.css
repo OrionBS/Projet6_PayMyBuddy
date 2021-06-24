@@ -11,21 +11,88 @@
 .icon {
   padding-right: 0.5rem;
 }
+.block {
+  display: block;
+}
+.active {
+  border-radius: 0.5rem;
+  background-color: #7dd076;
+  color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
 menu.big, menu.tiny {
   grid-area: menu;
 }
 div.content {
   grid-area: content;
 }
+
+
 div.wallet {
   grid-area: wallet;
 }
+h1.title {
+  grid-area: title;
+}
+p.balance {
+  grid-area: bal;
+}
+a.addBtn {
+  grid-area: addBtn;
+}
+a.sendBtn {
+  grid-area: sendBtn;
+}
+
+
 a.profile {
   grid-area: profile;
 }
+i.logoUser {
+  grid-area: lU;
+}
+p.email {
+  grid-area: email;
+}
+p.fN {
+  grid-area: fN;
+}
+p.lN {
+  grid-area: lN;
+}
+a.profileBtn {
+  grid-area: pB;
+}
+
+
 a.recentTransfer {
   grid-area: rT;
 }
+table.transfers {
+  grid-area: tF;
+}
+
+
 div.bestFriends {
   grid-area: bF;
+}
+table.friends {
+  grid-area: bF;
+}
+
+
+div.userToUser {
+  grid-area: uTu;
+}
+form.formUser {
+  grid-area: fU;
+}
+form.formBank {
+  grid-area: fB;
+}
+div.userBank {
+  grid-area: bT;
+}
+div.allTransfers {
+  grid-area: aT;
 }
