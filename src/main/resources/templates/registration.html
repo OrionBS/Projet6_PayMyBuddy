@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <!-- LINK META DATA -->
+    <meta charset="UTF-8">
+    <title>PMB - Regisration</title>
+    <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
+
+    <!-- LINK CSS Styles -->
+    <link rel="stylesheet" type="text/css" href="css/registration.css">
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+
+
+    <!-- LINK FONTS AND ICONS -->
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <form class="formLogin" action="#" th:action="@{/registerForm}" method="post" th:object="${user}">
+    <img class="imgResponsive" src="img/logo.png" alt="Logo de PayMyBuddy.">
+    <h1 class="title"><i class="icon fas fa-sign-in-alt"></i>Registration</h1>
+
+    <label class="emailLabel"><i class="icon fas fa-envelope"></i>Email</label>
+    <input class="emailInput" type="email" th:field="*{email}">
+
+    <label class="firstNameLabel"><i class="icon fas fa-tag"></i>FirstName</label>
+    <input class="firstNameInput" type="text" th:field="*{firstName}">
+
+    <label class="lastNameLabel"><i class="icon fas fa-tags"></i>LastName</label>
+    <input class="lastNameInput" type="text" th:field="*{lastName}">
+
+    <label class="passwordLabel"><i class="icon fas fa-lock"></i>Password</label>
+    <input class="passwordInput" type="password" th:field="*{password}">
+
+    <button class="button" type="submit"><i class="icon fas fa-check"></i>Register</button>
+  </form>
+</body>
+</html>

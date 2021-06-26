@@ -24,13 +24,13 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     UserRepository userRepository;
 
-    /*@Override
+    @Override
     public void BankToUser(String emailUser, float amount) {
         log.info("Service BankToUser:");
 
         String dateNow = LocalDate.now().toString();
 
-        log.info("Création de la transaction: BankJournal vers User: "+emailUser);
+        log.info("Création de la transaction: BankJournal vers User");
         Transaction userTransaction = Transaction
                 .builder()
                 .date(dateNow)
@@ -39,26 +39,27 @@ public class TransactionServiceImpl implements TransactionService {
                 .typeOfTransaction(TypeOfTransaction.BankToUser)
                 .build();
 
+        log.info("Récupération du User : "+emailUser);
         User user = userRepository.findByEmail(emailUser);
+        user.getTransactions().add(userTransaction);
         user.setAmount(user.getAmount()+amount);
 
         log.info("Mise à jour User : Transaction: "+userTransaction+" Old Amount: "+user.getAmount()+" New Amount: "+(user.getAmount()+amount)+".");
-        userRepository.save(user);
+
 
         BankJournal bankJournal = BankJournal
                 .builder()
-                (dateNow)
-                .description("Compte Bancaire de "+emailUser+" vers compte PMB.")
-                .who(emailUser)
+                .transaction(userTransaction)
                 .amount(amount)
-                .type(TypeOfTransaction.WITHDRAWAL)
                 .build();
-
         log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
+
+
+        userRepository.save(user);
         bankJournalRepository.save(bankJournal);
     }
 
-    @Override
+    /*@Override
     public void UserToBank(String emailUser, float amount) {
         log.info("Service UserToBank:");
 
@@ -99,11 +100,6 @@ public class TransactionServiceImpl implements TransactionService {
         log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
         bankJournalRepository.save(bankJournal);
     }*/
-
-    @Override
-    public void BankToUser(String emailUser, float amount) {
-
-    }
 
     @Override
     public void UserToBank(String emailUser, float amount) {

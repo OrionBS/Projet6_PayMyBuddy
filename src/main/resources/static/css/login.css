@@ -1,0 +1,69 @@
+@media all and (min-width: 1400px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    background-color: #e3e4eb;
+  }
+  form.formLogin {
+    padding: 2rem;
+    width: 600px;
+    background-color: #ffffff;
+    border-radius: 1rem;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+  h1.title {
+    justify-self: start;
+  }
+  label.emailLabel, label.passwordLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.emailInput, input.passwordInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: right;
+    margin-top: 1rem;
+  }
+
+}
+@media all and (min-width: 1200px) and (max-width: 1400px) {
+
+}
+@media all and (min-width: 992px) and (max-width: 1200px) {
+
+}
+@media all and (min-width: 768px) and (max-width: 992px) {
+
+}
+@media all and (min-width: 576px) and (max-width: 768px) {
+
+}
+@media all and (max-width: 576px) {
+
+
+}

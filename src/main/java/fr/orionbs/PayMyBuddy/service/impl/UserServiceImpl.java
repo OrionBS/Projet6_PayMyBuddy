@@ -1,5 +1,6 @@
 package fr.orionbs.PayMyBuddy.service.impl;
 
+import fr.orionbs.PayMyBuddy.model.Friend;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
 import fr.orionbs.PayMyBuddy.service.UserService;
@@ -24,50 +25,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Boolean isUserPresent(String email) {
+        if (findUser(email) == null) {
+            return false;
+        };
+        return true;
+    }
+
+    @Override
     public User addUser(User user) {
-        return null;
-    }
-
-    @Override
-    public User addFriend(String emailUser, String emailFriend) {
-        return null;
-    }
-
-    @Override
-    public String deleteUsers() {
-        return null;
-    }
-
-    @Override
-    public User findUser(String email) {
-        return null;
-    }
-
-    /*@Override
-    public User addUser(User user) {
-        log.info("Inscription de "+user);
-        User userAlreadyIn = userRepository.findByEmail(user.getEmail());
-        if(userAlreadyIn == null) {
-            log.info("Nouvel utilisateur : "+user);
-            return userRepository.save(user);
+        log.info("Service : Inscription de "+user);
+        if (isUserPresent(user.getEmail())) {
+            log.info("Utilisateur déjà présent. "+user);
+            return user;
         }
-        log.info("Utilisateur déjà présent. "+userAlreadyIn);
-        return userAlreadyIn;
+        log.info("Nouvel utilisateur : "+user);
+        return userRepository.save(user);
     }
 
     @Override
     public User addFriend(String emailUser, String emailFriend) {
         User user = userRepository.findByEmail(emailUser);
-        if (userRepository.findByEmail(emailFriend) == null) {
+        if (!isUserPresent(emailFriend)) {
             log.error("Erreur: "+emailFriend+" n'existe pas.");
             return null;
         }
 
         log.info("Ajout de "+emailFriend+" à la liste de "+emailUser);
-        List<String> listOfFriends = user.getFriends();
-        listOfFriends.add(emailFriend);
-        user.setFriends(listOfFriends);
-
+        user.getFriends().add(Friend.builder().user(userRepository.findByEmail(emailFriend)).build());
         return userRepository.save(user);
     }
 
@@ -82,5 +67,5 @@ public class UserServiceImpl implements UserService {
     public User findUser(String email) {
         log.info("Recherche d'un utilisateur :");
         return userRepository.findByEmail(email);
-    }*/
+    }
 }

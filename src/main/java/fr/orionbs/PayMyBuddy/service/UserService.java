@@ -10,4 +10,5 @@ public interface UserService {
     User addFriend(String emailUser, String emailFriend);
     String deleteUsers();
     User findUser(String email);
+    Boolean isUserPresent(String email);
 }
