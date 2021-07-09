@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
     <!-- LINK META DATA -->
     <meta charset="UTF-8">
     <title>PMB - Profile</title>
     <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- LINK CSS Styles -->
     <link rel="stylesheet" type="text/css" href="css/profile.css">
@@ -41,22 +42,23 @@
     <div class="profileDetails">
       <h1 class="title"><i class="icon fas fa-id-card"></i>Profile Details</h1>
       <i class="logoUser fas fa-user-circle"></i>
-      <p class="profileText email">email@emailHost.com</p>
-      <p class="profileText fN">firstName</p>
-      <p class="profileText lN">lastName</p>
+      <p class="profileText email" th:text="${user.getEmail()}">email@emailHost.com</p>
+      <p class="profileText fN" th:text="${user.getFirstName()}">firstName</p>
+      <p class="profileText lN" th:text="${user.getLastName()}">lastName</p>
     </div>
 
 
 
     <div class="profileEdit">
       <h1 class="title"><i class="icon fas fa-edit"></i>Edit Profile</h1>
-      <form class="formProfile" action="profile.html" method="post">
-        <label class="emailLabel" for="email">New or old email :</label>
-        <input class="emailInput" type="email" id="email" name="email" value="">
-        <label class="firstNameLabel" for="fN">New or old firstName :</label>
-        <input class="firstNameInput" type="text" id="fN" name="fN" value="">
-        <label class="lastNameLabel" for="lN">New or old lastName :</label>
-        <input class="lastNameInput" type="text" id="lN" name="lN" value="">
+      <form class="formProfile" action="#" th:action="@{/profile}" method="post" th:object="${user}">
+
+        <label class="firstNameLabel">New or old firstName :</label>
+        <input class="firstNameInput" type="text" th:field="*{firstName}" required>
+
+        <label class="lastNameLabel">New or old lastName :</label>
+        <input class="lastNameInput" type="text" th:field="*{lastName}" required>
+
         <button class="button" type="submit" name="button">Update profile</button>
       </form>
     </div>

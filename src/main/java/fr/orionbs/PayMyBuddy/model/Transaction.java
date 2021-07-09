@@ -22,11 +22,9 @@ public class Transaction {
     private String date;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "userIdFk", referencedColumnName = "id")
-    private User user;
+    @OneToOne
+    private User collector;
 
-    @ManyToOne
-    @JoinColumn(name = "friendIdFk", referencedColumnName = "id")
-    private Friend friend;
+    @OneToOne
+    private User sender;
 }

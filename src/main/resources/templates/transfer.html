@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- LINK META DATA -->
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PMB - Transfer</title>
     <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
 
@@ -40,18 +41,20 @@
 
     <div class="userToUser">
       <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Friend Transfer</h1>
-      <form class="formUser" action="transfer.html" method="post">
-        <label class="friendLabel" for="friend">Choose a friend :</label>
-        <select class="friendInput" id="friend" name="email">
+      <form class="formUser" action="#" th:action="@{/friendTransfer}" method="post" th:object="${transaction}">
+
+        <label class="friendLabel">Choose a friend :</label>
+        <select th:field="*{collector.getFriends()}" class="friendInput">
           <option value="">No friend selected</option>
-          <option value="tyler.hawks@email.com">Tyler Hawks</option>
-          <option value="john.doe@email.com">John Doe</option>
-          <option value="tom.hanks@email.com">Tom Hanks</option>
+          <option th:each="friend : ${user.getFriends()}" th:value="${friend.getEmail()}" th:text="${friend.getFullName()}"></option>
         </select>
-        <label class="descLabel" for="desc">Add a description :</label>
-        <input class="descInput" type="text" id="desc" name="desc" value="">
-        <label class="amountLabel" for="amount">Add an amount</label>
-        <input class="amountInput" type="number" id="amount" name="amount" value="">
+
+        <label class="descLabel">Add a description :</label>
+        <input class="descInput" type="text" th:field="*{description}">
+
+        <label class="amountLabel">Add an amount</label>
+        <input class="amountInput" type="number" th:field="*{amount}">
+
         <button class="button" type="submit" name="button">Send Money</button>
       </form>
     </div>
@@ -62,14 +65,16 @@
       <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Bank Transfer</h1>
       <form class="formBank" action="transfer.html" method="post">
         <p class="selectLabel">Select a mode :</p>
-        <label class="friendLabel" for="select"></label>
-        <select class="friendInput" id="select" name="mode">
+        <label class="friendLabel"></label>
+        <select class="friendInput">
           <option value="">No mode select</option>
           <option value="BTU">Bank To User</option>
           <option value="UTB">User To Bank</option>
         </select>
-        <label class="amountLabel" for="amount">Add an amount</label>
-        <input class="amountInput" type="number" id="amount" name="amount" value="">
+
+        <label class="amountLabel">Add an amount</label>
+        <input class="amountInput" type="number">
+
         <button class="button" type="submit" name="button">Send Money</button>
       </form>
     </div>
@@ -85,11 +90,11 @@
            <th>Description</th>
            <th>Amount</th>
          </tr>
-         <tr>
-           <td>John</td>
-           <td>Bank</td>
-           <td>Send money to his bank</td>
-           <td>1000,00 €</td>
+         <tr th:each="transaction : ${user.getTransactions}">
+           <td th:text="${transaction.getCollector().getFullName()}">John</td>
+           <td th:text="${transaction.getSender().getFullName()}">Bank</td>
+           <td th:text="${transaction.getDescription()}">Send money to his bank</td>
+           <td th:text="${transaction.getAmount()}">1000,00 €</td>
          </tr>
       </table>
     </div>

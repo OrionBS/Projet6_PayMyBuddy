@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
     <!-- LINK META DATA -->
     <meta charset="UTF-8">
     <title>PMB - Home</title>
     <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- LINK CSS Styles -->
     <link rel="stylesheet" type="text/css" href="css/home.css">
@@ -40,7 +41,7 @@
 
     <div class="wallet">
       <h1 class="title"><i class="icon fas fa-wallet"></i> Wallet</h1>
-      <p class="balance">0000,00 €</p>
+      <p class="balance" th:text="${user.getAmountSession()}">0000,00 €</p>
       <a class="button addBtn" href="/transfer"><i class="icon fas fa-plus"></i>Add More Money</a>
       <a class="button sendBtn" href="/transfer"><i class="icon fas fa-paper-plane"></i>Send Bank Account</a>
     </div>
@@ -50,9 +51,9 @@
     <div class="profile">
       <h1 class="title"><i class="icon fas fa-id-card"></i> Profile</h1>
       <i class="logoUser fas fa-user-circle"></i>
-      <p class="profileText email">email@emailHost.com</p>
-      <p class="profileText fN">firstName</p>
-      <p class="profileText lN">lastName</p>
+      <p class="profileText email" th:text="${user.getEmailSession()}">email@emailHost.com</p>
+      <p class="profileText fN" th:text="${user.getFirstNameSession()}">firstName</p>
+      <p class="profileText lN" th:text="${user.getLastNameSession()}">lastName</p>
       <a class="button profileBtn" href="/profile"><i class="icon fas fa-edit"></i>Edit my profile</a>
     </div>
 

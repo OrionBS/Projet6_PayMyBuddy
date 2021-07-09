@@ -26,11 +26,15 @@ public class User {
     private String firstName;
     private String lastName;
     private float amount;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "userIdFk")
     private List<Friend> friends;
 
     @OneToMany
     @JoinColumn(name = "userIdFk")
     private List<Transaction> transactions;
+
+    public String getFullName(){
+        return firstName+" "+lastName;
+    }
 }

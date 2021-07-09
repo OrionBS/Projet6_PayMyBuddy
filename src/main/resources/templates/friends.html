@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- LINK META DATA -->
     <meta charset="UTF-8">
     <title>PMB - Friends</title>
     <meta name="description" content="PayMyBuddy est une application de transactions pour tout budget entre amis.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- LINK CSS Styles -->
     <link rel="stylesheet" type="text/css" href="css/friends.css">
@@ -40,9 +41,11 @@
 
     <div class="formFriends">
       <h1 class="title"><i class="icon fas fa-plus"></i>Add Friend</h1>
-      <form class="formFriend" action="friends.html" method="post">
-        <label class="friendLabel" for="friend">Add a friend's email</label>
-        <input class="friendInput" type="email" id="friend" name="email" value="">
+      <form class="formFriend" action="#" th:action="@{/friends}" method="post" th:object="${friend}">
+
+        <label class="friendLabel">Add a friend's email</label>
+        <input class="friendInput" type="email" th:field="*{email}">
+
         <button class="button" type="submit" name="button">Add a friend</button>
       </form>
     </div>
@@ -58,10 +61,10 @@
           <th>Email</th>
           <th>Send Again</th>
         </tr>
-        <tr>
-          <td>John</td>
-          <td>Doe</td>
-          <td>john.doe@email.com</td>
+        <tr th:each="friend : ${user.getFriends()}">
+          <td th:text="${friend.getFirstName()}">John</td>
+          <td th:text="${friend.getLastName()}">Doe</td>
+          <td th:text="${friend.getEmail()}">john.doe@email.com</td>
           <td class="fB">
             <a class="friendsButton button" href="/transfer?email=john.doe@emailHost.com">Send money</a>
           </td>

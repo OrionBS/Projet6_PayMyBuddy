@@ -25,7 +25,7 @@
   h1.title {
     justify-self: start;
   }
-  label.emailLabel, label.passwordLabel {
+  label.emailLabel, label.passwordLabel, a.redirect {
     display: block;
     font-size: 20px;
     padding-top: 1rem;

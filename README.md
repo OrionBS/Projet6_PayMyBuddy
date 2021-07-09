@@ -43,6 +43,10 @@ $ flush privileges;
 $ java -jar PayMyBuddyApp.jar
 ```
 
+## Web
+
+http://localhost:3030
+
 ## Fabriqué avec
 
 * [IntelliJ Community](https://www.jetbrains.com/idea/download/#section=windows) - Environnement de développement

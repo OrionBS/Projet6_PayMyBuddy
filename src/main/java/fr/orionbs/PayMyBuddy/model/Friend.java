@@ -17,7 +17,11 @@ public class Friend {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "userIdFk", referencedColumnName = "id")
-    private User user;
+    private String email;
+    private String firstName;
+    private String lastName;
+
+    public String getFullName(){
+        return firstName+" "+lastName;
+    }
 }

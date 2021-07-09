@@ -19,6 +19,7 @@ public class BankJournal {
     private Integer id;
 
     @OneToOne
+    @JoinColumn(name = "userIdFk")
     private Transaction transaction;
     private float amount;
 }
