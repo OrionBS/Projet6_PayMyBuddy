@@ -41,12 +41,12 @@
 
     <div class="userToUser">
       <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Friend Transfer</h1>
-      <form class="formUser" action="#" th:action="@{/friendTransfer}" method="post" th:object="${transaction}">
+      <form class="formUser" action="" th:action="@{/friendTransfer}" method="post" th:object="${transaction}">
 
         <label class="friendLabel">Choose a friend :</label>
-        <select th:field="*{collector.getFriends()}" class="friendInput">
+        <select th:field="*{collector}" class="friendInput">
           <option value="">No friend selected</option>
-          <option th:each="friend : ${user.getFriends()}" th:value="${friend.getEmail()}" th:text="${friend.getFullName()}"></option>
+          <option th:each="friend : ${user.getFriends()}" th:value="${friend.getUser()}" th:text="${friend.getFullName()}"></option>
         </select>
 
         <label class="descLabel">Add a description :</label>
@@ -63,7 +63,7 @@
 
     <div class="userBank">
       <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Bank Transfer</h1>
-      <form class="formBank" action="transfer.html" method="post">
+      <form class="formBank" action="" th:action="@{/bankTransfer}" method="post" th:object="${transaction}">
         <p class="selectLabel">Select a mode :</p>
         <label class="friendLabel"></label>
         <select class="friendInput">

@@ -39,7 +39,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-        return userRepository.save(user);
+
+        User oldUser = findUser(user.getEmail());
+
+        oldUser.setFirstName(user.getFirstName());
+        oldUser.setLastName(user.getLastName());
+
+        return userRepository.save(oldUser);
     }
 
 
@@ -72,7 +78,8 @@ public class UserServiceImpl implements UserService {
 
         log.info("Ajout de "+emailFriend+" à la liste de "+emailUser);
         User userFriend = userRepository.findByEmail(emailFriend);
-        user.getFriends().add(Friend.builder().email(userFriend.getEmail()).firstName(userFriend.getFirstName()).lastName(userFriend.getLastName()).build());
+        Friend.builder().id(userFriend.getId()).user(userFriend).build();
+        user.getFriends().add(Friend.builder().id(userFriend.getId()).user(userFriend).build());
         return userRepository.save(user);
     }
 
@@ -93,9 +100,10 @@ public class UserServiceImpl implements UserService {
     public Boolean findUserWithEmailAndPassword(String email, String password) {
 
         User user = userRepository.findByEmail(email);
-
-        if (passwordEncoder().matches(password,user.getPassword())) {
-            return true;
+        if (user != null) {
+            if (passwordEncoder().matches(password,user.getPassword())) {
+                return true;
+            }
         }
         return false;
     }

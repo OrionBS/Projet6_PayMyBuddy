@@ -44,7 +44,7 @@
       <form class="formFriend" action="#" th:action="@{/friends}" method="post" th:object="${friend}">
 
         <label class="friendLabel">Add a friend's email</label>
-        <input class="friendInput" type="email" th:field="*{email}">
+        <input class="friendInput" type="email" th:field="*{friendEmail}">
 
         <button class="button" type="submit" name="button">Add a friend</button>
       </form>
@@ -62,9 +62,9 @@
           <th>Send Again</th>
         </tr>
         <tr th:each="friend : ${user.getFriends()}">
-          <td th:text="${friend.getFirstName()}">John</td>
-          <td th:text="${friend.getLastName()}">Doe</td>
-          <td th:text="${friend.getEmail()}">john.doe@email.com</td>
+          <td th:text="${friend.getUser.getFirstName()}">John</td>
+          <td th:text="${friend.getUser.getLastName()}">Doe</td>
+          <td th:text="${friend.getUser.getEmail()}">john.doe@email.com</td>
           <td class="fB">
             <a class="friendsButton button" href="/transfer?email=john.doe@emailHost.com">Send money</a>
           </td>

@@ -151,18 +151,733 @@
 
 }
 @media all and (min-width: 1200px) and (max-width: 1400px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
+
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fF"
+    "aF"
+    "aF"
+    "aF";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.formFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fF"
+    "fF"
+    "fF";
+  }
+  label.friendLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.friendInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: left;
+    margin-top: 1rem;
+  }
+
+
+
+  div.allFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF";
+  }
+  table.friends {
+    border-collapse: collapse;
+    align-self: start;
+  }
+  td,th {
+    text-align: left;
+    padding: .5rem;
+    border: 1px solid #e3e4eb;
+  }
+  td.fB {
+    text-align: center;
+  }
+  a.friendsButton {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    font-weight: normal !important;
+    text-align: center;
+  }
+  a.button {
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    justify-self: center;
+    align-self: center;
+    padding: 0.3rem 1rem;
+  }
 
 }
 @media all and (min-width: 992px) and (max-width: 1200px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
+
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fF"
+    "aF"
+    "aF"
+    "aF";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.formFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fF"
+    "fF"
+    "fF";
+  }
+  label.friendLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.friendInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: left;
+    margin-top: 1rem;
+  }
+
+
+
+  div.allFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF";
+  }
+  table.friends {
+    border-collapse: collapse;
+    align-self: start;
+  }
+  td,th {
+    text-align: left;
+    padding: .5rem;
+    border: 1px solid #e3e4eb;
+  }
+  td.fB {
+    text-align: center;
+  }
+  a.friendsButton {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    font-weight: normal !important;
+    text-align: center;
+  }
+  a.button {
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    justify-self: center;
+    align-self: center;
+    padding: 0.3rem 1rem;
+  }
 
 }
 @media all and (min-width: 768px) and (max-width: 992px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
+
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fF"
+    "aF"
+    "aF"
+    "aF";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.formFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fF"
+    "fF"
+    "fF";
+  }
+  label.friendLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.friendInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: left;
+    margin-top: 1rem;
+  }
+
+
+
+  div.allFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF";
+  }
+  table.friends {
+    border-collapse: collapse;
+    align-self: start;
+  }
+  td,th {
+    text-align: left;
+    padding: .5rem;
+    border: 1px solid #e3e4eb;
+  }
+  td.fB {
+    text-align: center;
+  }
+  a.friendsButton {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    font-weight: normal !important;
+    text-align: center;
+  }
+  a.button {
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    justify-self: center;
+    align-self: center;
+    padding: 0.3rem 1rem;
+  }
 
 }
 @media all and (min-width: 576px) and (max-width: 768px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
+
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fF"
+    "aF"
+    "aF"
+    "aF";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.formFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fF"
+    "fF"
+    "fF";
+  }
+  label.friendLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.friendInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: left;
+    margin-top: 1rem;
+  }
+
+
+
+  div.allFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF";
+  }
+  table.friends {
+    border-collapse: collapse;
+    align-self: start;
+  }
+  td,th {
+    text-align: left;
+    padding: .5rem;
+    border: 1px solid #e3e4eb;
+  }
+  td.fB {
+    text-align: center;
+  }
+  a.friendsButton {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    font-weight: normal !important;
+    text-align: center;
+  }
+  a.button {
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    justify-self: center;
+    align-self: center;
+    padding: 0.3rem 1rem;
+  }
 
 }
 @media all and (max-width: 576px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
+
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "fF"
+    "aF"
+    "aF"
+    "aF";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.formFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fF"
+    "fF"
+    "fF";
+  }
+  label.friendLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.friendInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: left;
+    margin-top: 1rem;
+  }
+
+
+
+  div.allFriends {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF"
+    "bF";
+  }
+  table.friends {
+    border-collapse: collapse;
+    align-self: start;
+  }
+  td,th {
+    text-align: left;
+    padding: .5rem;
+    border: 1px solid #e3e4eb;
+  }
+  td.fB {
+    text-align: center;
+  }
+  a.friendsButton {
+    margin: 0 !important;
+    padding: 0.25rem !important;
+    font-weight: normal !important;
+    text-align: center;
+  }
+  a.button {
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    justify-self: center;
+    align-self: center;
+    padding: 0.3rem 1rem;
+  }
 
 
 }

@@ -13,15 +13,6 @@ public class UserMapping {
 
     public UserSession userRepoToUserSession(User user) {
 
-        List<String> friendsFullName = new ArrayList();
-        List<String> friendsEmail = new ArrayList<>();
-
-        if (user.getFriends() !=null) {
-            for (Friend friend : user.getFriends()) {
-                friendsFullName.add(friend.getFullName());
-                friendsEmail.add(friend.getEmail());
-            }
-        }
-        return new UserSession(user.getId(), user.getEmail(), user.getFirstName(), user.getLastName(),user.getAmount(), friendsFullName,friendsEmail,user.getTransactions());
-    };
+        return new UserSession(user.getId(), user.getEmail(), user.getFirstName(), user.getLastName(),user.getAmount(),user.getFriends() ,user.getTransactions());
+    }
 }

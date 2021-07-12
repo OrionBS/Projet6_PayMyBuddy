@@ -135,18 +135,648 @@
 
 }
 @media all and (min-width: 1200px) and (max-width: 1400px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
 
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "pD"
+    "pD"
+    "pE"
+    "pE";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.profileDetails {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title title title"
+    "lU lU lU"
+    "lU lU lU"
+    "lU lU lU"
+    "email fN lN"
+    "email fN lN";
+  }
+  i.logoUser {
+    font-size: 150px;
+    justify-self: center;
+    align-self: center;
+  }
+  p.profileText {
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+  }
+
+
+
+  div.profileEdit {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fP"
+    "fP"
+    "fP"
+    "fP"
+    "fP";
+  }
+  label.emailLabel, label.firstNameLabel, label.lastNameLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.emailInput, input.firstNameInput, input.lastNameInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: right;
+    margin-top: 1rem;
+  }
 }
 @media all and (min-width: 992px) and (max-width: 1200px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
 
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "pD"
+    "pD"
+    "pE"
+    "pE";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.profileDetails {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title title title"
+    "lU lU lU"
+    "lU lU lU"
+    "lU lU lU"
+    "email fN lN"
+    "email fN lN";
+  }
+  i.logoUser {
+    font-size: 150px;
+    justify-self: center;
+    align-self: center;
+  }
+  p.profileText {
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+  }
+
+
+
+  div.profileEdit {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fP"
+    "fP"
+    "fP"
+    "fP"
+    "fP";
+  }
+  label.emailLabel, label.firstNameLabel, label.lastNameLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.emailInput, input.firstNameInput, input.lastNameInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: right;
+    margin-top: 1rem;
+  }
 }
 @media all and (min-width: 768px) and (max-width: 992px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
 
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "pD"
+    "pD"
+    "pE"
+    "pE";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.profileDetails {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title title title"
+    "lU lU lU"
+    "lU lU lU"
+    "lU lU lU"
+    "email fN lN"
+    "email fN lN";
+  }
+  i.logoUser {
+    font-size: 150px;
+    justify-self: center;
+    align-self: center;
+  }
+  p.profileText {
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+  }
+
+
+
+  div.profileEdit {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fP"
+    "fP"
+    "fP"
+    "fP"
+    "fP";
+  }
+  label.emailLabel, label.firstNameLabel, label.lastNameLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.emailInput, input.firstNameInput, input.lastNameInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: right;
+    margin-top: 1rem;
+  }
 }
 @media all and (min-width: 576px) and (max-width: 768px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
 
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "pD"
+    "pD"
+    "pE"
+    "pE";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.profileDetails {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title title title"
+    "lU lU lU"
+    "lU lU lU"
+    "lU lU lU"
+    "email fN lN"
+    "email fN lN";
+  }
+  i.logoUser {
+    font-size: 150px;
+    justify-self: center;
+    align-self: center;
+  }
+  p.profileText {
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+  }
+
+
+
+  div.profileEdit {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fP"
+    "fP"
+    "fP"
+    "fP"
+    "fP";
+  }
+  label.emailLabel, label.firstNameLabel, label.lastNameLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.emailInput, input.firstNameInput, input.lastNameInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: right;
+    margin-top: 1rem;
+  }
 }
 @media all and (max-width: 576px) {
+  body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "menu content content content content content content content content content";
+  }
 
+
+
+  menu.big {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    align-content: flex-start;
+  }
+  menu.tiny {
+    display: none;
+  }
+  img.imgResponsive {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  a.menuItem {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+
+
+
+  div.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "pD"
+    "pD"
+    "pE"
+    "pE";
+    grid-gap: 2rem;
+    padding: 2rem;
+    background-color: #e3e4eb;
+    overflow-y: auto;
+  }
+
+
+
+  div.profileDetails {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title title title"
+    "lU lU lU"
+    "lU lU lU"
+    "lU lU lU"
+    "email fN lN"
+    "email fN lN";
+  }
+  i.logoUser {
+    font-size: 150px;
+    justify-self: center;
+    align-self: center;
+  }
+  p.profileText {
+    font-weight: bold;
+    align-self: center;
+    justify-self: center;
+  }
+
+
+
+  div.profileEdit {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    overflow-y: auto;
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1rem;
+    grid-template-areas:
+    "title"
+    "fP"
+    "fP"
+    "fP"
+    "fP"
+    "fP";
+  }
+  label.emailLabel, label.firstNameLabel, label.lastNameLabel {
+    display: block;
+    font-size: 20px;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  input.emailInput, input.firstNameInput, input.lastNameInput {
+    display: block;
+    border: 1px solid #e3e4eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+  }
+  button.button {
+    display: block;
+    background-color: #7dd076;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0.3rem 1rem;
+    border: none;
+    float: right;
+    margin-top: 1rem;
+  }
 
 }

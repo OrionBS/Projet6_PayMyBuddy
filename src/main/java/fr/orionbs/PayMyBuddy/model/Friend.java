@@ -17,11 +17,12 @@ public class Friend {
     @GeneratedValue
     private Integer id;
 
-    private String email;
-    private String firstName;
-    private String lastName;
+    private String friendEmail;
+
+    @OneToOne
+    private User user;
 
     public String getFullName(){
-        return firstName+" "+lastName;
+        return user.getFullName();
     }
 }

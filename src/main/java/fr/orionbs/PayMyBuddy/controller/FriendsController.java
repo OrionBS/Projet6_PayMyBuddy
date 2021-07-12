@@ -40,9 +40,11 @@ public class FriendsController {
 
     @PostMapping(path = "/friends")
     public String loginTreatment(@ModelAttribute(name = "friend") Friend friend, HttpSession httpSession){
-        User userSession = (User) httpSession.getAttribute("user");
+        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+
         if(userSession != null) {
-            userService.addFriend(userSession.getEmail(), friend.getEmail());
+
+            userService.addFriend(userSession.getEmailSession(), friend.getFriendEmail());
             return "redirect:/friends";
         }
 

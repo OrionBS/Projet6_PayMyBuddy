@@ -59,6 +59,11 @@ public class TransactionServiceImpl implements TransactionService {
         bankJournalRepository.save(bankJournal);
     }
 
+    @Override
+    public void UserToBank(String emailUser, float amount) {
+
+    }
+
     /*@Override
     public void UserToBank(String emailUser, float amount) {
         log.info("Service UserToBank:");
@@ -66,10 +71,11 @@ public class TransactionServiceImpl implements TransactionService {
         String dateNow = LocalDate.now().toString();
 
         log.info("Création de la transaction: User: "+emailUser+" vers BankJournal.");
-        UserTransaction userTransaction = UserTransaction
+        Transaction transaction = Transaction
                 .builder()
+                .typeOfTransaction(TypeOfTransaction.UserToBank)
                 .date(dateNow)
-                .price(amount)
+                .amount(amount)
                 .description("Compte PMB de "+emailUser+" vers Compte Bancaire.")
                 .sendTo("BankJournal")
                 .sendBy(emailUser)
@@ -100,11 +106,6 @@ public class TransactionServiceImpl implements TransactionService {
         log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
         bankJournalRepository.save(bankJournal);
     }*/
-
-    @Override
-    public void UserToBank(String emailUser, float amount) {
-
-    }
 
     @Override
     public void UserToUser(String emailUserSender, String emailUserCollector, float amount) {

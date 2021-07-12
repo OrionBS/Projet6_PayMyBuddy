@@ -36,14 +36,11 @@ public class ProfileController {
     }
 
     @PostMapping(path = "/profile")
-    public String loginTreatment(@ModelAttribute(name = "user") User user, HttpSession httpSession){
-        Object userSessionObject = httpSession.getAttribute("user");
-        User userSession = (User) userSessionObject;
+    public String updateProfile(@ModelAttribute(name = "user") User user, HttpSession httpSession){
+        UserSession userSession = (UserSession) httpSession.getAttribute("user");
         if(userSession != null) {
-            User userUpdated = userSession;
-            userUpdated.setFirstName(user.getFirstName());
-            userUpdated.setLastName(user.getLastName());
-            userService.updateUser(userUpdated);
+            user.setEmail(userSession.getEmailSession());
+            userService.updateUser(user);
             return "redirect:/profile";
         }
 

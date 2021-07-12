@@ -42,9 +42,9 @@
     <div class="profileDetails">
       <h1 class="title"><i class="icon fas fa-id-card"></i>Profile Details</h1>
       <i class="logoUser fas fa-user-circle"></i>
-      <p class="profileText email" th:text="${user.getEmail()}">email@emailHost.com</p>
-      <p class="profileText fN" th:text="${user.getFirstName()}">firstName</p>
-      <p class="profileText lN" th:text="${user.getLastName()}">lastName</p>
+      <p class="profileText email" th:text="${user.getEmailSession()}">email@emailHost.com</p>
+      <p class="profileText fN" th:text="${user.getFirstNameSession()}">firstName</p>
+      <p class="profileText lN" th:text="${user.getLastNameSession()}">lastName</p>
     </div>
 
 
@@ -54,10 +54,10 @@
       <form class="formProfile" action="#" th:action="@{/profile}" method="post" th:object="${user}">
 
         <label class="firstNameLabel">New or old firstName :</label>
-        <input class="firstNameInput" type="text" th:field="*{firstName}" required>
+        <input class="firstNameInput" type="text" th:field="*{firstNameSession}" required>
 
         <label class="lastNameLabel">New or old lastName :</label>
-        <input class="lastNameInput" type="text" th:field="*{lastName}" required>
+        <input class="lastNameInput" type="text" th:field="*{lastNameSession}" required>
 
         <button class="button" type="submit" name="button">Update profile</button>
       </form>
