@@ -1,7 +1,6 @@
-package fr.orionbs.PayMyBuddy.controlerTest;
+package fr.orionbs.PayMyBuddy.controllerTest;
 
 import fr.orionbs.PayMyBuddy.model.User;
-import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-public class ProfileControllerTest {
+public class RegistrationControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -41,21 +39,10 @@ public class ProfileControllerTest {
     }
 
     @Test
-    public void testProfile() throws Exception {
+    public void testRegistration() throws Exception {
 
-        UserSession userSession = UserSession.builder().idSession(1).emailSession("test@email.com").firstNameSession("test").lastNameSession("Test").amountSession(200f).friends(null).transactions(null).build();
-
-        MockHttpSession mockHttpSession = new MockHttpSession();
-        mockHttpSession.setAttribute("userSession",userSession);
-
-        mockMvc.perform(get("/profile")
-                .session(mockHttpSession))
+        mockMvc.perform(get("/registration"))
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void testProfileRedirection() throws Exception {
-        mockMvc.perform(get("/profile"))
-                .andExpect(status().isFound());
-    }
 }

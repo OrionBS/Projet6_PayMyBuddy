@@ -1,5 +1,6 @@
-package fr.orionbs.PayMyBuddy.controlerTest;
+package fr.orionbs.PayMyBuddy.controllerTest;
 
+import fr.orionbs.PayMyBuddy.dto.FriendDTO;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
@@ -16,13 +17,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.transaction.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-public class TransferControllerTest {
+public class FriendsControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -41,21 +43,40 @@ public class TransferControllerTest {
     }
 
     @Test
-    public void testTransfer() throws Exception {
+    public void testFriends() throws Exception {
 
         UserSession userSession = UserSession.builder().idSession(1).emailSession("test@email.com").firstNameSession("test").lastNameSession("Test").amountSession(200f).friends(null).transactions(null).build();
 
         MockHttpSession mockHttpSession = new MockHttpSession();
         mockHttpSession.setAttribute("userSession",userSession);
 
-        mockMvc.perform(get("/transfer")
+        mockMvc.perform(get("/friends")
                 .session(mockHttpSession))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testTransferRedirection() throws Exception {
-        mockMvc.perform(get("/transfer"))
+    public void testFriendsRedirection() throws Exception {
+        mockMvc.perform(get("/friends"))
                 .andExpect(status().isFound());
     }
+
+    @Test
+    public void testFriendsPost() throws Exception {
+
+        UserSession userSession = UserSession.builder().idSession(1).emailSession("test@email.com").firstNameSession("test").lastNameSession("Test").amountSession(200f).friends(null).transactions(null).build();
+
+        MockHttpSession mockHttpSession = new MockHttpSession();
+        mockHttpSession.setAttribute("userSession",userSession);
+
+        User user = User.builder().id(1).email("test2@email.com").firstName("test2").lastName("Test2").amount(2000f).friends(null).transactions(null).build();
+        userRepository.save(user);
+
+        FriendDTO friendDTO = FriendDTO.builder().user(user).build();
+
+        mockMvc.perform(post("/friends")
+                .session(mockHttpSession))
+                .andExpect(status().isForbidden());
+    }
+
 }

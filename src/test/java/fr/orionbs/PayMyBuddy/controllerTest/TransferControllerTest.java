@@ -1,7 +1,5 @@
-package fr.orionbs.PayMyBuddy.controlerTest;
+package fr.orionbs.PayMyBuddy.controllerTest;
 
-import fr.orionbs.PayMyBuddy.dto.FriendDTO;
-import fr.orionbs.PayMyBuddy.dto.UserDTO;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
@@ -18,14 +16,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.transaction.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-public class LoginControllerTest {
+public class TransferControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -34,7 +31,7 @@ public class LoginControllerTest {
 
     @BeforeEach
     public void setUp() {
-        User user = User.builder().id(1).email("test@email.com").firstName("test").lastName("Test").password("$2a$10$6TajU85/gVrGUm5fv5Z8beVF37rlENohyLk3BEpZJFi6Av9JNkw9O").amount(200f).friends(null).transactions(null).build();
+        User user = User.builder().id(1).email("test@email.com").firstName("test").lastName("Test").amount(200f).friends(null).transactions(null).build();
         userRepository.save(user);
     }
 
@@ -44,17 +41,21 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void testLogin() throws Exception {
-        mockMvc.perform(get("/login"))
+    public void testTransfer() throws Exception {
+
+        UserSession userSession = UserSession.builder().idSession(1).emailSession("test@email.com").firstNameSession("test").lastNameSession("Test").amountSession(200f).friends(null).transactions(null).build();
+
+        MockHttpSession mockHttpSession = new MockHttpSession();
+        mockHttpSession.setAttribute("userSession",userSession);
+
+        mockMvc.perform(get("/transfer")
+                .session(mockHttpSession))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testLoginPost() throws Exception {
-        UserDTO userDTO = UserDTO.builder().email("test@email.com").password("123456").build();
-
-        mockMvc.perform(post("/friends")
-                .content(userDTO.toString()))
-                .andExpect(status().isForbidden());
+    public void testTransferRedirection() throws Exception {
+        mockMvc.perform(get("/transfer"))
+                .andExpect(status().isFound());
     }
 }

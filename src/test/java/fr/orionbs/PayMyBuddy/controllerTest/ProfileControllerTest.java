@@ -1,4 +1,4 @@
-package fr.orionbs.PayMyBuddy.controlerTest;
+package fr.orionbs.PayMyBuddy.controllerTest;
 
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.model.UserSession;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional
-public class LogOffControllerTest {
+public class ProfileControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -41,21 +41,21 @@ public class LogOffControllerTest {
     }
 
     @Test
-    public void testLogOff() throws Exception {
+    public void testProfile() throws Exception {
 
         UserSession userSession = UserSession.builder().idSession(1).emailSession("test@email.com").firstNameSession("test").lastNameSession("Test").amountSession(200f).friends(null).transactions(null).build();
 
         MockHttpSession mockHttpSession = new MockHttpSession();
         mockHttpSession.setAttribute("userSession",userSession);
 
-        mockMvc.perform(get("/logoff")
+        mockMvc.perform(get("/profile")
                 .session(mockHttpSession))
-                .andExpect(status().isFound());
+                .andExpect(status().isOk());
     }
 
     @Test
-    public void testLogOffRedirection() throws Exception {
-        mockMvc.perform(get("/logoff"))
+    public void testProfileRedirection() throws Exception {
+        mockMvc.perform(get("/profile"))
                 .andExpect(status().isFound());
     }
 }
