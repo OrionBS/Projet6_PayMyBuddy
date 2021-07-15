@@ -1,9 +1,8 @@
 package fr.orionbs.PayMyBuddy.controller;
 
-import fr.orionbs.PayMyBuddy.dto.UserSession;
+import fr.orionbs.PayMyBuddy.dto.TransactionDTO;
+import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.mapper.UserMapping;
-import fr.orionbs.PayMyBuddy.model.Transaction;
-import fr.orionbs.PayMyBuddy.model.TypeOfTransaction;
 import fr.orionbs.PayMyBuddy.service.TransactionService;
 import fr.orionbs.PayMyBuddy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,43 +28,42 @@ public class TransferController {
 
     @GetMapping(path = "/transfer")
     public String transfer(HttpSession httpSession, Model model) {
-        Transaction transaction = new Transaction();
-        model.addAttribute("transaction", transaction);
+        TransactionDTO transactionDTO = new TransactionDTO();
+        model.addAttribute("transactionDTO", transactionDTO);
 
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
 
         if(userSession != null) {
             userSession = userMapping.userRepoToUserSession(userService.findUser(userSession.getEmailSession()));
-            model.addAttribute("user", userSession);
+            model.addAttribute("userSession", userSession);
             return "transfer";
         }
         return "redirect:/login";
     }
     @PostMapping(path = "/friendTransfer")
-    public String friendTransfered(@ModelAttribute(name = "transaction") Transaction transaction,
-                                   HttpSession httpSession){
+    public String friendTransfered(@ModelAttribute(name = "transactionDTO") TransactionDTO transactionDTO, HttpSession httpSession){
 
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
 
         if(userSession != null) {
-            transactionService.UserToUser(userSession.getEmailSession(),transaction.getCollector().getEmail(),transaction.getAmount());
+            transactionService.UserToUser(userSession.getEmailSession(),transactionDTO.getCollectorEmail(),transactionDTO.getAmount(),transactionDTO.getDescription());
             return "redirect:/transfer";
         }
 
         return "redirect:/";
     }
     @PostMapping(path = "/bankTransfer")
-    public String bankTransfered(@ModelAttribute(name = "transaction") Transaction transaction, HttpSession httpSession){
+    public String bankTransfered(@ModelAttribute(name = "transactionDTO") TransactionDTO transactionDTO, HttpSession httpSession){
 
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
 
         if(userSession != null) {
-            switch (transaction.getTypeOfTransaction()) {
+            switch (transactionDTO.getTypeOfTransaction()) {
                 case BankToUser:
-                    transactionService.BankToUser(userSession.getEmailSession(),transaction.getAmount());
+                    transactionService.BankToUser(userSession.getEmailSession(),transactionDTO.getAmount());
                     return "redirect:/transfer";
                 case UserToBank:
-                    transactionService.UserToBank(userSession.getEmailSession(),transaction.getAmount());
+                    transactionService.UserToBank(userSession.getEmailSession(),transactionDTO.getAmount());
                     return "redirect:/transfer";
             }
         }

@@ -42,22 +42,22 @@
     <div class="profileDetails">
       <h1 class="title"><i class="icon fas fa-id-card"></i>Profile Details</h1>
       <i class="logoUser fas fa-user-circle"></i>
-      <p class="profileText email" th:text="${user.getEmailSession()}">email@emailHost.com</p>
-      <p class="profileText fN" th:text="${user.getFirstNameSession()}">firstName</p>
-      <p class="profileText lN" th:text="${user.getLastNameSession()}">lastName</p>
+      <p class="profileText email" th:text="${userSession.getEmailSession()}">email@emailHost.com</p>
+      <p class="profileText fN" th:text="${userSession.getFirstNameSession()}">firstName</p>
+      <p class="profileText lN" th:text="${userSession.getLastNameSession()}">lastName</p>
     </div>
 
 
 
     <div class="profileEdit">
       <h1 class="title"><i class="icon fas fa-edit"></i>Edit Profile</h1>
-      <form class="formProfile" action="#" th:action="@{/profile}" method="post" th:object="${user}">
+      <form class="formProfile" action="#" th:action="@{/profile}" method="post" th:object="${userDTO}">
 
         <label class="firstNameLabel">New or old firstName :</label>
-        <input class="firstNameInput" type="text" th:field="*{firstNameSession}" required>
+        <input class="firstNameInput" type="text" th:field="*{firstName}" required>
 
         <label class="lastNameLabel">New or old lastName :</label>
-        <input class="lastNameInput" type="text" th:field="*{lastNameSession}" required>
+        <input class="lastNameInput" type="text" th:field="*{lastName}" required>
 
         <button class="button" type="submit" name="button">Update profile</button>
       </form>

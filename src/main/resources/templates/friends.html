@@ -41,10 +41,10 @@
 
     <div class="formFriends">
       <h1 class="title"><i class="icon fas fa-plus"></i>Add Friend</h1>
-      <form class="formFriend" action="#" th:action="@{/friends}" method="post" th:object="${friend}">
+      <form class="formFriend" action="#" th:action="@{/friends}" method="post" th:object="${friendDTO}">
 
         <label class="friendLabel">Add a friend's email</label>
-        <input class="friendInput" type="email" th:field="*{friendEmail}">
+        <input class="friendInput" type="email" th:field="*{user.email}">
 
         <button class="button" type="submit" name="button">Add a friend</button>
       </form>
@@ -61,10 +61,10 @@
           <th>Email</th>
           <th>Send Again</th>
         </tr>
-        <tr th:each="friend : ${user.getFriends()}">
-          <td th:text="${friend.getUser.getFirstName()}">John</td>
-          <td th:text="${friend.getUser.getLastName()}">Doe</td>
-          <td th:text="${friend.getUser.getEmail()}">john.doe@email.com</td>
+        <tr th:each="friendSession : ${userSession.getFriends()}">
+          <td th:text="${friendSession.getUser.getFirstName()}">John</td>
+          <td th:text="${friendSession.getUser.getLastName()}">Doe</td>
+          <td th:text="${friendSession.getUser.getEmail()}">john.doe@email.com</td>
           <td class="fB">
             <a class="friendsButton button" href="/transfer?email=john.doe@emailHost.com">Send money</a>
           </td>

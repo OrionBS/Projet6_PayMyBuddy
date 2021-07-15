@@ -1,8 +1,7 @@
 package fr.orionbs.PayMyBuddy.controller;
 
-import fr.orionbs.PayMyBuddy.dto.UserSession;
+import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.mapper.UserMapping;
-import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,10 @@ public class HomeController {
 
     @GetMapping(path = "/")
     public String home(HttpSession httpSession, Model model) {
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
         if(userSession != null) {
             userSession = userMapping.userRepoToUserSession(userService.findUser(userSession.getEmailSession()));
-            model.addAttribute("user", userSession);
+            model.addAttribute("userSession", userSession);
             return "home";
         }
         return "redirect:/login";

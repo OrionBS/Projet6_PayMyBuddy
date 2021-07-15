@@ -41,12 +41,12 @@
 
     <div class="userToUser">
       <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Friend Transfer</h1>
-      <form class="formUser" action="" th:action="@{/friendTransfer}" method="post" th:object="${transaction}">
+      <form class="formUser" action="" th:action="@{/friendTransfer}" method="post" th:object="${transactionDTO}">
 
         <label class="friendLabel">Choose a friend :</label>
-        <select th:field="*{collector}" class="friendInput">
+        <select th:field="*{collectorEmail}" class="friendInput">
           <option value="">No friend selected</option>
-          <option th:each="friend : ${user.getFriends()}" th:value="${friend.getUser()}" th:text="${friend.getFullName()}"></option>
+          <option th:each="friend : ${userSession.getFriends()}" th:value="${friend.getUser().getEmail()}" th:text="${friend.getFullName()}"></option>
         </select>
 
         <label class="descLabel">Add a description :</label>
@@ -63,17 +63,17 @@
 
     <div class="userBank">
       <h1 class="title"><i class="icon fas fa-exchange-alt"></i>Bank Transfer</h1>
-      <form class="formBank" action="" th:action="@{/bankTransfer}" method="post" th:object="${transaction}">
+      <form class="formBank" action="" th:action="@{/bankTransfer}" method="post" th:object="${transactionDTO}">
         <p class="selectLabel">Select a mode :</p>
         <label class="friendLabel"></label>
-        <select class="friendInput">
+        <select th:field="*{typeOfTransaction}" class="friendInput">
           <option value="">No mode select</option>
-          <option value="BTU">Bank To User</option>
-          <option value="UTB">User To Bank</option>
+          <option th:value="BankToUser">Bank To User</option>
+          <option th:value="UserToBank">User To Bank</option>
         </select>
 
         <label class="amountLabel">Add an amount</label>
-        <input class="amountInput" type="number">
+        <input class="amountInput" type="number" th:field="*{amount}">
 
         <button class="button" type="submit" name="button">Send Money</button>
       </form>
@@ -90,11 +90,11 @@
            <th>Description</th>
            <th>Amount</th>
          </tr>
-         <tr th:each="transaction : ${user.getTransactions}">
-           <td th:text="${transaction.getCollector().getFullName()}">John</td>
-           <td th:text="${transaction.getSender().getFullName()}">Bank</td>
-           <td th:text="${transaction.getDescription()}">Send money to his bank</td>
-           <td th:text="${transaction.getAmount()}">1000,00 €</td>
+         <tr th:each="transactionSession : ${userSession.getTransactions}">
+           <td th:text="${transactionSession.getCollector()?.getFullName()}">John</td>
+           <td th:text="${transactionSession.getSender()?.getFullName()}">Bank</td>
+           <td th:text="${transactionSession.getDescription()}">Send money to his bank</td>
+           <td th:text="${transactionSession.getAmount()}">1000,00 €</td>
          </tr>
       </table>
     </div>

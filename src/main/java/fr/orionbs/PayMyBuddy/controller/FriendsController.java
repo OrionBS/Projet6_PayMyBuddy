@@ -1,9 +1,8 @@
 package fr.orionbs.PayMyBuddy.controller;
 
-import fr.orionbs.PayMyBuddy.dto.UserSession;
+import fr.orionbs.PayMyBuddy.dto.FriendDTO;
 import fr.orionbs.PayMyBuddy.mapper.UserMapping;
-import fr.orionbs.PayMyBuddy.model.Friend;
-import fr.orionbs.PayMyBuddy.model.User;
+import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,25 +25,25 @@ public class FriendsController {
 
     @GetMapping(path = "/friends")
     public String friends(HttpSession httpSession, Model model) {
-        Friend friend = new Friend();
-        model.addAttribute("friend", friend);
+        FriendDTO friendDTO = new FriendDTO();
+        model.addAttribute("friendDTO", friendDTO);
 
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
         if(userSession != null) {
             userSession = userMapping.userRepoToUserSession(userService.findUser(userSession.getEmailSession()));
-            model.addAttribute("user", userSession);
+            model.addAttribute("userSession", userSession);
             return "friends";
         }
         return "redirect:/login";
     }
 
     @PostMapping(path = "/friends")
-    public String loginTreatment(@ModelAttribute(name = "friend") Friend friend, HttpSession httpSession){
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+    public String addingFriendTreatment(@ModelAttribute(name = "friendDTO") FriendDTO friendDTO, HttpSession httpSession){
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
 
         if(userSession != null) {
 
-            userService.addFriend(userSession.getEmailSession(), friend.getFriendEmail());
+            Boolean done = userService.addFriend(userSession.getEmailSession(), friendDTO.getUser().getEmail());
             return "redirect:/friends";
         }
 

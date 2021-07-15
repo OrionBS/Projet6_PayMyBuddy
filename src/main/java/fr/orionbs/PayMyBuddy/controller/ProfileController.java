@@ -1,8 +1,8 @@
 package fr.orionbs.PayMyBuddy.controller;
 
-import fr.orionbs.PayMyBuddy.dto.UserSession;
+import fr.orionbs.PayMyBuddy.dto.UserDTO;
+import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.mapper.UserMapping;
-import fr.orionbs.PayMyBuddy.model.Friend;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,21 +26,29 @@ public class ProfileController {
 
     @GetMapping(path = "/profile")
     public String profile(HttpSession httpSession, Model model) {
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+
+        UserDTO userDTO = new UserDTO();
+        model.addAttribute("userDTO",userDTO);
+
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
+
         if(userSession != null) {
             userSession = userMapping.userRepoToUserSession(userService.findUser(userSession.getEmailSession()));
-            model.addAttribute("user", userSession);
+            model.addAttribute("userSession", userSession);
             return "profile";
         }
+
         return "redirect:/login";
     }
 
     @PostMapping(path = "/profile")
-    public String updateProfile(@ModelAttribute(name = "user") User user, HttpSession httpSession){
-        UserSession userSession = (UserSession) httpSession.getAttribute("user");
+    public String updateProfile(@ModelAttribute(name = "userDTO") UserDTO userDTO, HttpSession httpSession){
+
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
+
         if(userSession != null) {
-            user.setEmail(userSession.getEmailSession());
-            userService.updateUser(user);
+            userDTO.setEmail(userSession.getEmailSession());
+            userService.updateUserDTO(userDTO);
             return "redirect:/profile";
         }
 

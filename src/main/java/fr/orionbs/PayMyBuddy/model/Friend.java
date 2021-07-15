@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Builder
 @Getter
 @Setter
-@ToString
 @Entity(name = "friend")
 public class Friend {
 
@@ -17,12 +16,18 @@ public class Friend {
     @GeneratedValue
     private Integer id;
 
-    private String friendEmail;
-
     @OneToOne
     private User user;
 
     public String getFullName(){
         return user.getFullName();
+    }
+
+    @Override
+    public String toString() {
+        return "Friend{" +
+                "id=" + id +
+                ", user=" + user.getFullName() +
+                '}';
     }
 }

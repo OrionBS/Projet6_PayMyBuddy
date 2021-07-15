@@ -3,13 +3,13 @@ package fr.orionbs.PayMyBuddy.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Setter
 @Getter
-@ToString
 @Entity(name = "transaction")
 public class Transaction {
 
@@ -22,9 +22,25 @@ public class Transaction {
     private String date;
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private User collector;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private User sender;
+
+    @Override
+    public String toString() {
+
+        var receiver = Arrays.asList(TypeOfTransaction.BankToUser,TypeOfTransaction.UserToUser).contains(typeOfTransaction) ? ", collector=" + collector.getFullName() : "";
+        var emitter = Arrays.asList(TypeOfTransaction.UserToBank,TypeOfTransaction.UserToUser).contains(typeOfTransaction) ? ", sender=" + sender.getFullName() : "";
+        return "Transaction{" +
+                "id=" + id +
+                ", typeOfTransaction=" + typeOfTransaction +
+                ", amount=" + amount +
+                ", date='" + date + '\'' +
+                ", description='" + description + '\'' +
+                emitter +
+                receiver +
+                "}";
+    }
 }

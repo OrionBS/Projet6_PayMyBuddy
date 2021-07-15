@@ -1,5 +1,6 @@
 package fr.orionbs.PayMyBuddy.controller;
 
+import fr.orionbs.PayMyBuddy.model.UserSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,12 @@ public class LogOffController {
 
     @GetMapping(path = "/logoff")
     public String logoff(HttpSession httpSession) {
-        httpSession.removeAttribute("user");
+
+        UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
+        if (userSession != null) {
+            httpSession.removeAttribute("userSession");
+            return "redirect:/login";
+        }
         return "redirect:/login";
     }
 }

@@ -1,10 +1,10 @@
 package fr.orionbs.PayMyBuddy.service.impl;
 
-import fr.orionbs.PayMyBuddy.model.BankJournal;
+import fr.orionbs.PayMyBuddy.model.BankLog;
 import fr.orionbs.PayMyBuddy.model.Transaction;
 import fr.orionbs.PayMyBuddy.model.TypeOfTransaction;
 import fr.orionbs.PayMyBuddy.model.User;
-import fr.orionbs.PayMyBuddy.repository.BankJournalRepository;
+import fr.orionbs.PayMyBuddy.repository.BankLogsRepository;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
 import fr.orionbs.PayMyBuddy.service.TransactionService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +20,55 @@ import java.time.LocalDate;
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
-    BankJournalRepository bankJournalRepository;
-    @Autowired
     UserRepository userRepository;
+    @Autowired
+    BankLogsRepository bankLogsRepository;
+
+    @Override
+    public void UserToUser(String emailUserSender, String emailUserCollector, float amount, String description) {
+        log.info("Service UserToUser:");
+
+        String dateNow = LocalDate.now().toString();
+
+        User sender = userRepository.findByEmail(emailUserSender);
+        User collector = userRepository.findByEmail(emailUserCollector);
+
+        BankLog bankLog = BankLog
+                .builder()
+                .typeOfTransaction(TypeOfTransaction.Commission)
+                .date(dateNow)
+                .amount(amount*0.1f)
+                .description("Commission sur transaction entre "+emailUserSender+" et "+emailUserCollector+".")
+                .build();
+
+        bankLogsRepository.save(bankLog);
+
+        log.info("BankLog Commission rédigé et envoyé :"+bankLog);
+
+        Transaction transaction = Transaction
+                .builder()
+                .typeOfTransaction(TypeOfTransaction.UserToUser)
+                .amount(amount)
+                .date(dateNow)
+                .description(description)
+                .collector(collector)
+                .sender(sender)
+                .build();
+
+        log.info("Transaction générée : " + transaction);
+
+        sender.setAmount(sender.getAmount() - amount);
+        sender.getTransactions().add(transaction);
+        userRepository.save(sender);
+
+        log.info("Envoyeur récupéré et mis à jour : " + sender.getFullName());
+
+        collector.setAmount(collector.getAmount() + (amount -(amount*0.1f)));
+        collector.getTransactions().add(transaction);
+        userRepository.save(collector);
+
+        log.info("Receveur récupéré et mis à jour : " + collector.getFullName());
+    }
 
     @Override
     public void BankToUser(String emailUser, float amount) {
@@ -30,85 +76,77 @@ public class TransactionServiceImpl implements TransactionService {
 
         String dateNow = LocalDate.now().toString();
 
-        log.info("Création de la transaction: BankJournal vers User");
-        Transaction userTransaction = Transaction
+        User collector = userRepository.findByEmail(emailUser);
+
+        Transaction transaction = Transaction
                 .builder()
+                .typeOfTransaction(TypeOfTransaction.BankToUser)
+                .amount(amount)
+                .date(dateNow)
+                .description("Compte Bancaire de " + emailUser + " vers compte PMB.")
+                .collector(collector)
+                .build();
+
+        log.info("Transaction générée : " + transaction);
+
+        BankLog bankLog = BankLog
+                .builder()
+                .typeOfTransaction(TypeOfTransaction.BankToUser)
                 .date(dateNow)
                 .amount(amount)
-                .description("Compte Bancaire de "+emailUser+" vers compte PMB.")
-                .typeOfTransaction(TypeOfTransaction.BankToUser)
+                .description("Compte Bancaire de " + emailUser + " vers compte PMB.")
                 .build();
 
-        log.info("Récupération du User : "+emailUser);
-        User user = userRepository.findByEmail(emailUser);
-        user.getTransactions().add(userTransaction);
-        user.setAmount(user.getAmount()+amount);
+        bankLogsRepository.save(bankLog);
 
-        log.info("Mise à jour User : Transaction: "+userTransaction+" Old Amount: "+user.getAmount()+" New Amount: "+(user.getAmount()+amount)+".");
+        log.info("BankLog rédigé et envoyé :"+bankLog);
 
+        collector.setAmount(collector.getAmount() + amount);
+        collector.getTransactions().add(transaction);
+        userRepository.save(collector);
 
-        BankJournal bankJournal = BankJournal
-                .builder()
-                .transaction(userTransaction)
-                .amount(amount)
-                .build();
-        log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
+        log.info("Receveur récupéré et mis à jour : " + collector.getFullName());
 
-
-        userRepository.save(user);
-        bankJournalRepository.save(bankJournal);
     }
 
     @Override
-    public void UserToBank(String emailUser, float amount) {
-
-    }
-
-    /*@Override
     public void UserToBank(String emailUser, float amount) {
         log.info("Service UserToBank:");
 
         String dateNow = LocalDate.now().toString();
 
-        log.info("Création de la transaction: User: "+emailUser+" vers BankJournal.");
+        User sender = userRepository.findByEmail(emailUser);
+        log.info(""+sender);
+
         Transaction transaction = Transaction
+                .builder()
+                .typeOfTransaction(TypeOfTransaction.UserToBank)
+                .amount(amount)
+                .date(dateNow)
+                .description("Compte PMB vers Compte Bancaire de " + emailUser + ".")
+                .sender(sender)
+                .build();
+
+        log.info("Transaction générée : " + transaction);
+
+        sender.setAmount(sender.getAmount() - amount);
+        sender.getTransactions().add(transaction);
+        userRepository.save(sender);
+
+        log.info("Envoyeur récupéré et mis à jour : " + sender.getFullName());
+
+        BankLog bankLog = BankLog
                 .builder()
                 .typeOfTransaction(TypeOfTransaction.UserToBank)
                 .date(dateNow)
                 .amount(amount)
-                .description("Compte PMB de "+emailUser+" vers Compte Bancaire.")
-                .sendTo("BankJournal")
-                .sendBy(emailUser)
+                .description("Compte Bancaire de " + emailUser + " vers compte PMB.")
                 .build();
 
-        User user = userRepository.findByEmail(emailUser);
-        if (user.getAmount()<amount) {
+        bankLogsRepository.save(bankLog);
 
-        } else {
-            user.setAmount(user.getAmount()-amount);
-            user.getUserTransactions().add(userTransaction);
-        }
+        log.info("BankLog rédigé et envoyé :"+bankLog);
 
-
-
-        log.info("Mise à jour User : Transaction: "+userTransaction+" Old Amount: "+user.getAmount()+" New Amount: "+(user.getAmount()+amount)+".");
-        userRepository.save(user);
-
-        BankJournal bankJournal = BankJournal
-                .builder()
-                .date(dateNow)
-                .description("Compte Bancaire de "+emailUser+" vers compte PMB.")
-                .who(emailUser)
-                .amount(amount)
-                .type(TypeOfTransaction.WITHDRAWAL)
-                .build();
-
-        log.info("Enregistrement transaction dans le journal de banque : "+bankJournal+".");
-        bankJournalRepository.save(bankJournal);
-    }*/
-
-    @Override
-    public void UserToUser(String emailUserSender, String emailUserCollector, float amount) {
 
     }
 }

@@ -1,5 +1,7 @@
 package fr.orionbs.PayMyBuddy.service.impl;
 
+import fr.orionbs.PayMyBuddy.dto.UserDTO;
+import fr.orionbs.PayMyBuddy.mapper.UserMapping;
 import fr.orionbs.PayMyBuddy.model.Friend;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
@@ -12,8 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 @Slf4j
@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -31,32 +32,43 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean isUserPresent(String email) {
-        if (findUser(email) == null) {
-            return false;
-        };
-        return true;
+
+        return userRepository.findByEmail(email) != null;
     }
 
     @Override
-    public User updateUser(User user) {
+    public User updateUserDTO(UserDTO userDTO) {
+        User oldUser = userRepository.findByEmail(userDTO.getEmail());
 
-        User oldUser = findUser(user.getEmail());
-
-        oldUser.setFirstName(user.getFirstName());
-        oldUser.setLastName(user.getLastName());
+        oldUser.setFirstName(userDTO.getFirstName());
+        oldUser.setLastName(userDTO.getLastName());
 
         return userRepository.save(oldUser);
     }
 
+    @Override
+    public User updateUserData(User user) {
+
+        return userRepository.save(user);
+    }
+
 
     @Override
-    public Boolean addUser(User user) {
-        log.info("Service : Inscription de "+user);
+    public Boolean addUser(UserDTO userDTO) {
+        log.info("Service : Inscription de "+userDTO);
 
-        if (isUserPresent(user.getEmail())) {
+        UserMapping userMapping = new UserMapping();
+
+        User user = userMapping.userDtoToUserRepo(userDTO);
+
+        if (userRepository.existsByEmail(user.getEmail())) {
             log.info("Utilisateur déjà présent. "+user);
             return false;
         }
+        /*if (isUserPresent(user.getEmail())) {
+            log.info("Utilisateur déjà présent. "+user);
+            return false;
+        }*/
         user.setPassword(passwordEncoder().encode(user.getPassword()));
 
         log.info("Nouvel utilisateur : "+user);
@@ -67,20 +79,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addFriend(String emailUser, String emailFriend) {
+    public Boolean addFriend(String emailUser, String emailFriend) {
 
         User user = userRepository.findByEmail(emailUser);
 
-        if (!isUserPresent(emailFriend)) {
+        /*if (!isUserPresent(emailFriend)) {
             log.error("Erreur: "+emailFriend+" n'existe pas.");
             return null;
+        }*/
+        if (userRepository.existsByEmail(emailFriend)) {
+            log.info("Utilisateur déjà présent. "+user);
+            return false;
         }
 
         log.info("Ajout de "+emailFriend+" à la liste de "+emailUser);
         User userFriend = userRepository.findByEmail(emailFriend);
-        Friend.builder().id(userFriend.getId()).user(userFriend).build();
-        user.getFriends().add(Friend.builder().id(userFriend.getId()).user(userFriend).build());
-        return userRepository.save(user);
+        Friend friend = Friend.builder().id(userFriend.getId()).user(userFriend).build();
+        user.getFriends().add(friend);
+        userRepository.save(user);
+        return true;
     }
 
     @Override

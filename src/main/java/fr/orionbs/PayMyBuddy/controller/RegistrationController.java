@@ -1,6 +1,7 @@
 package fr.orionbs.PayMyBuddy.controller;
 
-import fr.orionbs.PayMyBuddy.dto.UserSession;
+import fr.orionbs.PayMyBuddy.dto.UserDTO;
+import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.mapper.UserMapping;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.service.UserService;
@@ -26,18 +27,19 @@ public class RegistrationController {
 
     @GetMapping(path = "/registration")
     public String registration(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        UserDTO userDTO = new UserDTO();
+        model.addAttribute("userDTO", userDTO);
         return "registration";
     }
     @PostMapping(path = "/registration")
-    public String registrationTreatment(@ModelAttribute(name = "user") User user, HttpSession httpSession) {
-        log.info("New User : "+user);
+    public String registrationTreatment(@ModelAttribute(name = "userDTO") UserDTO userDTO, HttpSession httpSession) {
+        log.info("New User : "+userDTO);
 
-        if (userService.addUser(user)) {
-            UserSession userSession = userMapping.userRepoToUserSession(user);
+        if (userService.addUser(userDTO)) {
 
-            httpSession.setAttribute("user",userSession);
+            UserSession userSession = userMapping.userRepoToUserSession(userService.findUser(userDTO.getEmail()));
+
+            httpSession.setAttribute("userSession",userSession);
 
             return "redirect:/";
         }

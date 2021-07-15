@@ -41,7 +41,7 @@
 
     <div class="wallet">
       <h1 class="title"><i class="icon fas fa-wallet"></i> Wallet</h1>
-      <p class="balance" th:text="${user.getAmountSession()}">0000,00 €</p>
+      <p class="balance" th:text="${userSession.getAmountSession()}">0000,00 €</p>
       <a class="button addBtn" href="/transfer"><i class="icon fas fa-plus"></i>Add More Money</a>
       <a class="button sendBtn" href="/transfer"><i class="icon fas fa-paper-plane"></i>Send Bank Account</a>
     </div>
@@ -51,9 +51,9 @@
     <div class="profile">
       <h1 class="title"><i class="icon fas fa-id-card"></i> Profile</h1>
       <i class="logoUser fas fa-user-circle"></i>
-      <p class="profileText email" th:text="${user.getEmailSession()}">email@emailHost.com</p>
-      <p class="profileText fN" th:text="${user.getFirstNameSession()}">firstName</p>
-      <p class="profileText lN" th:text="${user.getLastNameSession()}">lastName</p>
+      <p class="profileText email" th:text="${userSession.getEmailSession()}">email@emailHost.com</p>
+      <p class="profileText fN" th:text="${userSession.getFirstNameSession()}">firstName</p>
+      <p class="profileText lN" th:text="${userSession.getLastNameSession()}">lastName</p>
       <a class="button profileBtn" href="/profile"><i class="icon fas fa-edit"></i>Edit my profile</a>
     </div>
 
@@ -68,38 +68,14 @@
            <th>Description</th>
            <th>Amount</th>
          </tr>
-         <tr>
-           <td>John</td>
-           <td>Bank</td>
-           <td>Send money to his bank</td>
-           <td>1000,00 €</td>
-         </tr>
+          <tr th:each="transactionSession : ${userSession.getTransactions}">
+              <td th:text="${transactionSession.getCollector()?.getFullName()}">John</td>
+              <td th:text="${transactionSession.getSender()?.getFullName()}">Bank</td>
+              <td th:text="${transactionSession.getDescription()}">Send money to his bank</td>
+              <td th:text="${transactionSession.getAmount()}">1000,00 €</td>
+          </tr>
       </table>
     </a>
-
-
-
-    <div class="bestFriends">
-      <h1><i class="icon fas fa-thumbs-up"></i> Best Friends</h1>
-      <table class="friends">
-         <tr>
-           <th>FirstName</th>
-           <th>LastName</th>
-           <th>Transaction's Quantity</th>
-           <th>Send Again</th>
-         </tr>
-         <tr>
-           <td>John</td>
-           <td>Doe</td>
-           <td>10</td>
-           <td class="fB">
-             <a class="friendsButton button" href="/transfer?email=john.doe@emailHost.com">Send money</a>
-           </td>
-         </tr>
-      </table>
-    </div>
-
-
 
   </div>
 

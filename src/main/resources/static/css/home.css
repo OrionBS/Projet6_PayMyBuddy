@@ -43,7 +43,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
     "wallet profile"
-    "rT bF";
+    "rT rT";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -148,48 +148,9 @@
     padding: .5rem;
     border: 1px solid #e3e4eb;
   }
-
-
-
-  div.bestFriends {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "bF"
-    "bF"
-    "bF"
-    "bF"
-    "bF";
-  }
-  table.friends {
-    align-self: start;
-    border-collapse: collapse;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
-  td.fB {
-    text-align: center;
-  }
-  a.friendsButton {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    font-weight: normal !important;
-    text-align: center;
-  }
-
-
-
 }
+
+
 @media all and (min-width: 1200px) and (max-width: 1400px) {
   body {
     position: absolute;
@@ -235,7 +196,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
     "wallet profile"
-    "rT bF";
+    "rT rT";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -340,45 +301,9 @@
     padding: .5rem;
     border: 1px solid #e3e4eb;
   }
-
-
-
-  div.bestFriends {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "bF"
-    "bF"
-    "bF"
-    "bF"
-    "bF";
-  }
-  table.friends {
-    align-self: start;
-    border-collapse: collapse;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
-  td.fB {
-    text-align: center;
-  }
-  a.friendsButton {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    font-weight: normal !important;
-    text-align: center;
-  }
 }
+
+
 @media all and (min-width: 992px) and (max-width: 1200px) {
   body {
     position: absolute;
@@ -424,7 +349,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
     "wallet profile"
-    "rT bF";
+    "rT rT";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -529,45 +454,9 @@
     padding: .5rem;
     border: 1px solid #e3e4eb;
   }
-
-
-
-  div.bestFriends {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "bF"
-    "bF"
-    "bF"
-    "bF"
-    "bF";
-  }
-  table.friends {
-    align-self: start;
-    border-collapse: collapse;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
-  td.fB {
-    text-align: center;
-  }
-  a.friendsButton {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    font-weight: normal !important;
-    text-align: center;
-  }
 }
+
+
 @media all and (min-width: 768px) and (max-width: 992px) {
   body {
     position: absolute;
@@ -613,7 +502,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
     "wallet profile"
-    "rT bF";
+    "rT rT";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -718,45 +607,9 @@
     padding: .5rem;
     border: 1px solid #e3e4eb;
   }
-
-
-
-  div.bestFriends {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "bF"
-    "bF"
-    "bF"
-    "bF"
-    "bF";
-  }
-  table.friends {
-    align-self: start;
-    border-collapse: collapse;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
-  td.fB {
-    text-align: center;
-  }
-  a.friendsButton {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    font-weight: normal !important;
-    text-align: center;
-  }
 }
+
+
 @media all and (min-width: 576px) and (max-width: 768px) {
   body {
     position: absolute;
@@ -802,7 +655,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
     "wallet profile"
-    "rT bF";
+    "rT rT";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -907,45 +760,9 @@
     padding: .5rem;
     border: 1px solid #e3e4eb;
   }
-
-
-
-  div.bestFriends {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "bF"
-    "bF"
-    "bF"
-    "bF"
-    "bF";
-  }
-  table.friends {
-    align-self: start;
-    border-collapse: collapse;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
-  td.fB {
-    text-align: center;
-  }
-  a.friendsButton {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    font-weight: normal !important;
-    text-align: center;
-  }
 }
+
+
 @media all and (max-width: 576px) {
   body {
     position: absolute;
@@ -991,7 +808,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
     "wallet profile"
-    "rT bF";
+    "rT rT";
     grid-gap: 2rem;
     padding: 2rem;
     background-color: #e3e4eb;
@@ -1096,43 +913,4 @@
     padding: .5rem;
     border: 1px solid #e3e4eb;
   }
-
-
-
-  div.bestFriends {
-    border-radius: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 1rem;
-    grid-template-areas:
-    "title"
-    "bF"
-    "bF"
-    "bF"
-    "bF"
-    "bF";
-  }
-  table.friends {
-    align-self: start;
-    border-collapse: collapse;
-  }
-  td,th {
-    text-align: left;
-    padding: .5rem;
-    border: 1px solid #e3e4eb;
-  }
-  td.fB {
-    text-align: center;
-  }
-  a.friendsButton {
-    margin: 0 !important;
-    padding: 0.25rem !important;
-    font-weight: normal !important;
-    text-align: center;
-  }
-
 }

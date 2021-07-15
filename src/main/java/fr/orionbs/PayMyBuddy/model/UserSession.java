@@ -1,4 +1,4 @@
-package fr.orionbs.PayMyBuddy.dto;
+package fr.orionbs.PayMyBuddy.model;
 
 import fr.orionbs.PayMyBuddy.model.Friend;
 import fr.orionbs.PayMyBuddy.model.Transaction;

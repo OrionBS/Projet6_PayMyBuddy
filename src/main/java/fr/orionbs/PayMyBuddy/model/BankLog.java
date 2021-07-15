@@ -2,8 +2,9 @@ package fr.orionbs.PayMyBuddy.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,14 +13,14 @@ import java.util.List;
 @Getter
 @ToString
 @Entity(name = "bank_journal")
-public class BankJournal {
+public class BankLog {
 
     @Id
     @GeneratedValue
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "userIdFk")
-    private Transaction transaction;
+    private TypeOfTransaction typeOfTransaction;
     private float amount;
+    private String date;
+    private String description;
 }
