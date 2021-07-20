@@ -104,16 +104,12 @@ public class UserServiceTest {
         //GIVEN
         User user = new User(null,"d","d","d","d",0,null,null);
         UserDTO userDTO = new UserDTO("d","d","d","d");
-        //when(userRepository.findByEmail(anyString())).thenReturn(null);
-        //when(userRepository.existsUserByEmail("d")).thenReturn(false);
         when(userRepository.save(user)).thenReturn(user);
 
         //WHEN
         userService.addUser(userDTO);
 
         //THEN
-        //verify(userRepository,Mockito.times(1)).findByEmail(anyString());
-        verify(userRepository, Mockito.times(1)).existsByEmail(anyString());
         verify(userRepository, Mockito.times(1)).save(user);
     }
 
@@ -121,13 +117,13 @@ public class UserServiceTest {
     public void testAddUserAlreadyIn() {
         //GIVEN
         UserDTO userDTO = new UserDTO("d","d","d","d");
-        when(userRepository.existsByEmail(anyString())).thenReturn(true);
+        when(userRepository.findByEmail(anyString())).thenReturn(any(User.class));
 
         //WHEN
         userService.addUser(userDTO);
 
         //THEN
-        verify(userRepository, Mockito.times(1)).existsByEmail(userDTO.getEmail());
+        verify(userRepository, Mockito.times(1)).findByEmail(userDTO.getEmail());
 
     }
 

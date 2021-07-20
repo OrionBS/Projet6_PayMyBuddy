@@ -3,7 +3,6 @@ package fr.orionbs.PayMyBuddy.repositoryTest;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,19 +40,6 @@ public class UserRepositoryTest {
         //THEN
         assertThat(userFind).isNotNull();
         assertThat(userFind.getEmail()).isEqualTo("test@email.com");
-    }
-
-    @Test
-    public void testExistsByEmail() {
-        //GIVEN
-        User user = User.builder().email("test@email.com").build();
-        userRepository.save(user);
-
-        //WHEN
-        Boolean exist = userRepository.existsByEmail("test@email.com");
-
-        //THEN
-        assertThat(exist).isEqualTo(true);
     }
 
     @Test

@@ -61,14 +61,10 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapping.userDtoToUserRepo(userDTO);
 
-        if (userRepository.existsByEmail(user.getEmail())) {
-            log.info("Utilisateur déjà présent. "+user);
+        if(userRepository.findByEmail(user.getEmail()) != null) {
+            log.info("Utilisateur déjà présent : "+user.getEmail());
             return false;
         }
-        /*if (isUserPresent(user.getEmail())) {
-            log.info("Utilisateur déjà présent. "+user);
-            return false;
-        }*/
         user.setPassword(passwordEncoder().encode(user.getPassword()));
 
         log.info("Nouvel utilisateur : "+user);
@@ -83,12 +79,9 @@ public class UserServiceImpl implements UserService {
 
         User user = userRepository.findByEmail(emailUser);
 
-        /*if (!isUserPresent(emailFriend)) {
-            log.error("Erreur: "+emailFriend+" n'existe pas.");
-            return null;
-        }*/
-        if (userRepository.existsByEmail(emailFriend)) {
-            log.info("Utilisateur déjà présent. "+user);
+
+        if(userRepository.findByEmail(emailFriend) == null) {
+            log.info("Utilisateur inconnu : "+emailFriend);
             return false;
         }
 
