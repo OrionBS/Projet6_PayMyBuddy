@@ -22,7 +22,7 @@ public class ProfileController {
     @Autowired
     UserService userService;
     @Autowired
-    UserMapping userMapping;
+    UserMapping userMapping = new UserMapping();
 
     @GetMapping(path = "/profile")
     public String profile(HttpSession httpSession, Model model) {

@@ -55,19 +55,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean addUser(UserDTO userDTO) {
-        log.info("Service : Inscription de "+userDTO);
+        log.info("Service : Inscription de " + userDTO);
 
         UserMapping userMapping = new UserMapping();
 
         User user = userMapping.userDtoToUserRepo(userDTO);
 
-        if(userRepository.findByEmail(user.getEmail()) != null) {
-            log.info("Utilisateur déjà présent : "+user.getEmail());
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            log.info("Utilisateur déjà présent : " + user.getEmail());
             return false;
         }
         user.setPassword(passwordEncoder().encode(user.getPassword()));
 
-        log.info("Nouvel utilisateur : "+user);
+        log.info("Nouvel utilisateur : " + user);
 
         userRepository.save(user);
 
@@ -78,15 +78,13 @@ public class UserServiceImpl implements UserService {
     public Boolean addFriend(String emailUser, String emailFriend) {
 
         User user = userRepository.findByEmail(emailUser);
-
-
-        if(userRepository.findByEmail(emailFriend) == null) {
-            log.info("Utilisateur inconnu : "+emailFriend);
+        User userFriend = userRepository.findByEmail(emailFriend);
+        if (userFriend == null) {
+            log.info("Utilisateur inconnu : " + emailFriend);
             return false;
         }
 
-        log.info("Ajout de "+emailFriend+" à la liste de "+emailUser);
-        User userFriend = userRepository.findByEmail(emailFriend);
+        log.info("Ajout de " + emailFriend + " à la liste de " + emailUser);
         Friend friend = Friend.builder().id(userFriend.getId()).user(userFriend).build();
         user.getFriends().add(friend);
         userRepository.save(user);
@@ -111,7 +109,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userRepository.findByEmail(email);
         if (user != null) {
-            if (passwordEncoder().matches(password,user.getPassword())) {
+            if (passwordEncoder().matches(password, user.getPassword())) {
                 return true;
             }
         }

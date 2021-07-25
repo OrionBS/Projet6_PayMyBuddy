@@ -5,6 +5,8 @@ import fr.orionbs.PayMyBuddy.model.UserSession;
 import fr.orionbs.PayMyBuddy.model.User;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class UserMapping {
 
@@ -15,6 +17,6 @@ public class UserMapping {
 
     public User userDtoToUserRepo(UserDTO userDTO) {
 
-        return new User(null,userDTO.getEmail(), userDTO.getPassword(), userDTO.getFirstName(),userDTO.getLastName(),0,null,null);
+        return new User(null,userDTO.getEmail(), userDTO.getPassword(), userDTO.getFirstName(),userDTO.getLastName(),0,new ArrayList<>(),new ArrayList<>());
     }
 }

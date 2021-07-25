@@ -6,14 +6,15 @@ import fr.orionbs.PayMyBuddy.repository.UserRepository;
 import fr.orionbs.PayMyBuddy.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
@@ -27,6 +28,9 @@ public class UserServiceTest {
 
     @Mock
     UserRepository userRepository;
+
+    @Captor
+    private ArgumentCaptor<String> valueCaptor;
 
     @Test
     public void testGetUsers() {
@@ -117,7 +121,10 @@ public class UserServiceTest {
     public void testAddUserAlreadyIn() {
         //GIVEN
         UserDTO userDTO = new UserDTO("d","d","d","d");
-        when(userRepository.findByEmail(anyString())).thenReturn(any(User.class));
+
+        User user = User.builder().id(1).email("d").firstName("d").lastName("d").amount(0f).friends(null).transactions(null).build();
+
+        when(userRepository.findByEmail(anyString())).thenReturn(user);
 
         //WHEN
         userService.addUser(userDTO);
@@ -127,25 +134,43 @@ public class UserServiceTest {
 
     }
 
-    /*@Test
+    @Test
     public void testAddFriend() {
         //GIVEN
-        User user = User.builder().id(1).email("user@email.com").build();
+        User user = User.builder().id(1).email("user@email.com").friends(new ArrayList<>()).build();
         User friend = User.builder().id(2).email("friend@email.com").build();
-        when(userRepository.findByEmail(friend.getEmail())).thenReturn(friend);
-        when(userRepository.existsByEmail(friend.getEmail())).thenReturn(false);
         when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
+        when(userRepository.findByEmail(friend.getEmail())).thenReturn(friend);
         when(userRepository.save(user)).thenReturn(user);
 
         //WHEN
-        userService.addFriend(user.getEmail(),friend.getEmail());
+        Boolean result = userService.addFriend(user.getEmail(), friend.getEmail());
 
         //THEN
-        verify(userRepository, Mockito.times(1)).findByEmail("user@email.com");
-        verify(userRepository, Mockito.times(1)).existsByEmail("friend@email.com");
-        verify(userRepository, Mockito.times(1)).findByEmail("friend@email.com");
+        assertEquals(result, true);
+        verify(userRepository, Mockito.times(2)).findByEmail(valueCaptor.capture());
+        assertEquals("user@email.com", valueCaptor.getAllValues().get(0));
+        assertEquals("friend@email.com", valueCaptor.getAllValues().get(1));
         verify(userRepository, Mockito.times(1)).save(user);
-    }*/
+    }
+
+    @Test
+    public void testAddFriendShouldReturnFalse() {
+        //GIVEN
+        User user = User.builder().id(1).email("user@email.com").friends(new ArrayList<>()).build();
+        when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
+        when(userRepository.findByEmail("friend@email.com")).thenReturn(null);
+
+        //WHEN
+        Boolean result = userService.addFriend(user.getEmail(), "friend@email.com");
+
+        //THEN
+        assertEquals(result, false);
+        verify(userRepository, Mockito.times(2)).findByEmail(valueCaptor.capture());
+        assertEquals("user@email.com", valueCaptor.getAllValues().get(0));
+        assertEquals("friend@email.com", valueCaptor.getAllValues().get(1));
+        verify(userRepository, Mockito.times(0)).save(user);
+    }
 
     @Test
     public void testDeleteUsers() {
@@ -178,6 +203,21 @@ public class UserServiceTest {
         //GIVEN
         User user = User.builder().email("test@email.com").password("$2a$10$6TajU85/gVrGUm5fv5Z8beVF37rlENohyLk3BEpZJFi6Av9JNkw9O").build();
         when(userRepository.findByEmail(anyString())).thenReturn(user);
+
+        //WHEN
+
+        userService.findUserWithEmailAndPassword("test@email.com","123456");
+
+        //THEN
+        verify(userRepository,Mockito.times(1)).findByEmail(anyString());
+
+    }
+
+    @Test
+    public void testFindUserWithUserNull() {
+        //GIVEN
+        User user = User.builder().email("test@email.com").password("$2a$10$6TajU85/gVrGUm5fv5Z8beVF37rlENohyLk3BEpZJFi6Av9JNkw9O").build();
+        when(userRepository.findByEmail("test@email.com")).thenReturn(null);
 
         //WHEN
 

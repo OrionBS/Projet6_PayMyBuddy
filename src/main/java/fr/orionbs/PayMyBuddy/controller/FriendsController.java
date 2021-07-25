@@ -21,7 +21,7 @@ public class FriendsController {
     @Autowired
     UserService userService;
     @Autowired
-    UserMapping userMapping;
+    UserMapping userMapping = new UserMapping();
 
     @GetMapping(path = "/friends")
     public String friends(HttpSession httpSession, Model model) {
@@ -43,7 +43,8 @@ public class FriendsController {
 
         if(userSession != null) {
 
-            Boolean done = userService.addFriend(userSession.getEmailSession(), friendDTO.getUser().getEmail());
+            Boolean result = userService.addFriend(userSession.getEmailSession(), friendDTO.getUser().getEmail());
+
             return "redirect:/friends";
         }
 

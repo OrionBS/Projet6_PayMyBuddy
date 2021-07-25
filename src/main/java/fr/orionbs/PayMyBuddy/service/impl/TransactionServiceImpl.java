@@ -25,7 +25,7 @@ public class TransactionServiceImpl implements TransactionService {
     BankLogsRepository bankLogsRepository;
 
     @Override
-    public void UserToUser(String emailUserSender, String emailUserCollector, float amount, String description) {
+    public void userToUser(String emailUserSender, String emailUserCollector, float amount, String description) {
         log.info("Service UserToUser:");
 
         String dateNow = LocalDate.now().toString();
@@ -71,7 +71,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void BankToUser(String emailUser, float amount) {
+    public void bankToUser(String emailUser, float amount) {
         log.info("Service BankToUser:");
 
         String dateNow = LocalDate.now().toString();
@@ -110,7 +110,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void UserToBank(String emailUser, float amount) {
+    public void userToBank(String emailUser, float amount) {
         log.info("Service UserToBank:");
 
         String dateNow = LocalDate.now().toString();

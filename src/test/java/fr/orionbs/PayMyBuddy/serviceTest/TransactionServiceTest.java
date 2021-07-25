@@ -1,12 +1,10 @@
 package fr.orionbs.PayMyBuddy.serviceTest;
 
 import fr.orionbs.PayMyBuddy.model.BankLog;
-import fr.orionbs.PayMyBuddy.model.Transaction;
 import fr.orionbs.PayMyBuddy.model.TypeOfTransaction;
 import fr.orionbs.PayMyBuddy.model.User;
 import fr.orionbs.PayMyBuddy.repository.BankLogsRepository;
 import fr.orionbs.PayMyBuddy.repository.UserRepository;
-import fr.orionbs.PayMyBuddy.service.BankLogsService;
 import fr.orionbs.PayMyBuddy.service.impl.TransactionServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,39 +36,42 @@ public class TransactionServiceTest {
     @Mock
     List list;
 
-    /*@Test
+    @Test
     public void testUserToUser() {
         //GIVEN
-        User sender = User.builder().build();
-        User collector = User.builder().build();
+        User sender = User.builder().email("sender@email.com").transactions(new ArrayList<>()).build();
+        User collector = User.builder().email("collector@email.com").transactions(new ArrayList<>()).build();
         BankLog bankLog = BankLog.builder().typeOfTransaction(TypeOfTransaction.Commission).amount(10f).date(LocalDate.now().toString()).description("Commission sur transaction entre null et null.").build();
+
+        when(userRepository.save(any(User.class))).thenReturn(User.builder().build());
+
         when(userRepository.findByEmail(sender.getEmail())).thenReturn(sender);
         when(userRepository.findByEmail(collector.getEmail())).thenReturn(collector);
+
         when(bankLogsRepository.save(any(BankLog.class))).thenReturn(any(BankLog.class));
-        when(userRepository.save(sender)).thenReturn(sender);
-        when(userRepository.save(collector)).thenReturn(collector);
 
         //WHEN
-        transactionService.UserToUser(sender.getEmail(),collector.getEmail(),100,"test");
+        transactionService.userToUser(sender.getEmail(),collector.getEmail(),100,"test");
 
         //THEN
         verify(userRepository, Mockito.times(2)).findByEmail(anyString());
         verify(bankLogsRepository, Mockito.times(1)).save(any(BankLog.class));
         verify(userRepository, Mockito.times(2)).save(any(User.class));
 
+
     }
 
     @Test
     public void testUserToBank() {
         //GIVEN
-        User sender = User.builder().id(1).email("test@email.com").password("123456").firstName("test").lastName("Test").amount(1000f).build();
+        User sender = User.builder().id(1).email("test@email.com").password("123456").firstName("test").lastName("Test").amount(1000f).transactions(new ArrayList<>()).build();
         BankLog bankLog = BankLog.builder().typeOfTransaction(TypeOfTransaction.Commission).amount(10f).date(LocalDate.now().toString()).description("Commission sur transaction entre null et null.").build();
         when(userRepository.findByEmail(sender.getEmail())).thenReturn(sender);
         when(userRepository.save(sender)).thenReturn(sender);
         when(bankLogsRepository.save(any(BankLog.class))).thenReturn(any(BankLog.class));
 
         //WHEN
-        transactionService.UserToBank(sender.getEmail(),100);
+        transactionService.userToBank(sender.getEmail(),100);
 
         //THEN
         verify(userRepository, Mockito.times(1)).findByEmail(anyString());
@@ -82,19 +83,20 @@ public class TransactionServiceTest {
     @Test
     public void testBankToUser() {
         //GIVEN
-        User collector = User.builder().build();
+        User collector = User.builder().id(1).email("test@email.com").password("123456").firstName("test").lastName("Test").amount(1000f).transactions(new ArrayList<>()).build();
         BankLog bankLog = BankLog.builder().typeOfTransaction(TypeOfTransaction.Commission).amount(10f).date(LocalDate.now().toString()).description("Commission sur transaction entre null et null.").build();
         when(userRepository.findByEmail(collector.getEmail())).thenReturn(collector);
-        when(bankLogsRepository.save(any(BankLog.class))).thenReturn(any(BankLog.class));
         when(userRepository.save(collector)).thenReturn(collector);
+        when(bankLogsRepository.save(any(BankLog.class))).thenReturn(any(BankLog.class));
+
 
         //WHEN
-        transactionService.BankToUser(collector.getEmail(),100);
+        transactionService.bankToUser(collector.getEmail(),100);
 
         //THEN
         verify(userRepository, Mockito.times(1)).findByEmail(anyString());
         verify(bankLogsRepository, Mockito.times(1)).save(any(BankLog.class));
         verify(userRepository, Mockito.times(1)).save(any(User.class));
 
-    }*/
+    }
 }

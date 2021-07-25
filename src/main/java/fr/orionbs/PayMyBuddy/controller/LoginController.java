@@ -22,7 +22,7 @@ public class LoginController {
     @Autowired
     UserService userService;
     @Autowired
-    UserMapping userMapping;
+    UserMapping userMapping = new UserMapping();
 
     @GetMapping(path = "/login")
     public String login(Model model) {

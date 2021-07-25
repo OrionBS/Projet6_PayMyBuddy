@@ -24,7 +24,7 @@ public class TransferController {
     @Autowired
     TransactionService transactionService;
     @Autowired
-    UserMapping userMapping;
+    UserMapping userMapping = new UserMapping();
 
     @GetMapping(path = "/transfer")
     public String transfer(HttpSession httpSession, Model model) {
@@ -46,7 +46,7 @@ public class TransferController {
         UserSession userSession = (UserSession) httpSession.getAttribute("userSession");
 
         if(userSession != null) {
-            transactionService.UserToUser(userSession.getEmailSession(),transactionDTO.getCollectorEmail(),transactionDTO.getAmount(),transactionDTO.getDescription());
+            transactionService.userToUser(userSession.getEmailSession(),transactionDTO.getCollectorEmail(),transactionDTO.getAmount(),transactionDTO.getDescription());
             return "redirect:/transfer";
         }
 
@@ -60,10 +60,10 @@ public class TransferController {
         if(userSession != null) {
             switch (transactionDTO.getTypeOfTransaction()) {
                 case BankToUser:
-                    transactionService.BankToUser(userSession.getEmailSession(),transactionDTO.getAmount());
+                    transactionService.bankToUser(userSession.getEmailSession(),transactionDTO.getAmount());
                     return "redirect:/transfer";
                 case UserToBank:
-                    transactionService.UserToBank(userSession.getEmailSession(),transactionDTO.getAmount());
+                    transactionService.userToBank(userSession.getEmailSession(),transactionDTO.getAmount());
                     return "redirect:/transfer";
             }
         }

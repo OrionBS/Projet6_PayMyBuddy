@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Setter
 @Getter
 @ToString
-@Entity(name = "bank_journal")
+@Entity(name = "bank_logs")
 public class BankLog {
 
     @Id

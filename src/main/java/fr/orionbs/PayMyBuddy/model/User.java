@@ -3,6 +3,7 @@ package fr.orionbs.PayMyBuddy.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,11 +29,11 @@ public class User {
     private float amount;
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "userIdFk")
-    private List<Friend> friends;
+    private List<Friend> friends = new ArrayList<>();
 
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "userIdFk")
-    private List<Transaction> transactions;
+    private List<Transaction> transactions = new ArrayList<>();
 
     public String getFullName(){
         return firstName+" "+lastName;

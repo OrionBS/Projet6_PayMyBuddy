@@ -23,7 +23,7 @@ public class RegistrationController {
     private UserService userService;
 
     @Autowired
-    private UserMapping userMapping;
+    private UserMapping userMapping = new UserMapping();
 
     @GetMapping(path = "/registration")
     public String registration(Model model) {

@@ -18,7 +18,7 @@ public class HomeController {
     @Autowired
     UserService userService;
     @Autowired
-    UserMapping userMapping;
+    UserMapping userMapping = new UserMapping();
 
     @GetMapping(path = "/")
     public String home(HttpSession httpSession, Model model) {

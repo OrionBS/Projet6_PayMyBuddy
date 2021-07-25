@@ -44,7 +44,7 @@
       <form class="formFriend" action="#" th:action="@{/friends}" method="post" th:object="${friendDTO}">
 
         <label class="friendLabel">Add a friend's email</label>
-        <input class="friendInput" type="email" th:field="*{user.email}">
+        <input class="friendInput" type="email" th:field="*{user.email}" required>
 
         <button class="button" type="submit" name="button">Add a friend</button>
       </form>
