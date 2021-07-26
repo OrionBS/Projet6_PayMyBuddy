@@ -17,35 +17,40 @@ Une appli qui permettrait aux clients de transférer de l'argent pour gérer leu
 ### Installation
 
 ```
-$ cd /"dossier de téléchargement"/
-$ git clone https://github.com/OrionBS/Projet6_PayMyBuddy
-$ cd /Projet6_PayMyBuddy
-$ mvn clean verify
+cd /"dossier de téléchargement"/
+git clone https://github.com/OrionBS/Projet6_PayMyBuddy
+cd /Projet6_PayMyBuddy
+mvn clean verify
 ```
 ### Paramétrage MySQL
 
 Dans la console, démarrez MySQL
 ```
-$ mysql
+mysql
 ```
 Puis créez la base de donnée et l'utilisateur avec ses privilèges.
 ```
-$ create database PMB_DB;
-$ create user 'paymybuddyUsername'@'localhost' identified by 'paymybuddyPassword';
-$ grant all privileges on PMB_DB.* to 'paymybuddyUsername'@'localhost';
-$ flush privileges;
+create database PMB_DB;
+create user 'paymybuddyUsername'@'localhost' identified by 'paymybuddyPassword';
+grant all privileges on PMB_DB.* to 'paymybuddyUsername'@'localhost';
+flush privileges;
 ```
-
 
 ## Démarrage
 
 ```
-$ java -jar PayMyBuddyApp.jar
+java -jar PayMyBuddyApp.jar
 ```
+
+## Diagramme UML
+![UML_Diagram](src/main/resources/static/img/UML_diagram.png "Diagramme UML")
+
+## Le Modèle Physique de Données
+![MPD_Diagram](src/main/resources/static/img/MPD.png "Diagramme MPD")
 
 ## Web
 
-http://localhost:3030
+http://localhost:8080
 
 ## Fabriqué avec
 

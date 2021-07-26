@@ -37,7 +37,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .builder()
                 .typeOfTransaction(TypeOfTransaction.Commission)
                 .date(dateNow)
-                .amount(amount*0.1f)
+                .amount(amount*0.05f)
                 .description("Commission sur transaction entre "+emailUserSender+" et "+emailUserCollector+".")
                 .build();
 
@@ -48,7 +48,7 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction transaction = Transaction
                 .builder()
                 .typeOfTransaction(TypeOfTransaction.UserToUser)
-                .amount(amount)
+                .amount(amount*0.95f)
                 .date(dateNow)
                 .description(description)
                 .collector(collector)
@@ -63,7 +63,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         log.info("Envoyeur récupéré et mis à jour : " + sender.getFullName());
 
-        collector.setAmount(collector.getAmount() + (amount -(amount*0.1f)));
+        collector.setAmount(collector.getAmount() + (amount*0.95f));
         collector.getTransactions().add(transaction);
         userRepository.save(collector);
 
