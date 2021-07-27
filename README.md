@@ -24,6 +24,16 @@ mvn clean verify
 ```
 ### Paramétrage MySQL
 
+Créez 2 variables d'environnement :
+
+**Attention lorsque qu'une valeur est entre <>, merci de la remplacer par ce qu'il vous convient et de retirer les crochets.**
+```
+DB_USERNAME=<au choix username>
+DB_PASSWORD=<au choix password>
+
+Merci de faire correspondre vos choix aux variables initiées par la suite dans la BDD.
+```
+
 Dans la console, démarrez MySQL
 ```
 mysql
@@ -31,8 +41,8 @@ mysql
 Puis créez la base de donnée et l'utilisateur avec ses privilèges.
 ```
 create database PMB_DB;
-create user 'paymybuddyUsername'@'localhost' identified by 'paymybuddyPassword';
-grant all privileges on PMB_DB.* to 'paymybuddyUsername'@'localhost';
+create user '<au choix username>'@'localhost' identified by '<au choix password>';
+grant all privileges on PMB_DB.* to '<au choix username>'@'localhost';
 flush privileges;
 ```
 

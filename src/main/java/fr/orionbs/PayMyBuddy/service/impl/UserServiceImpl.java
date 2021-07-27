@@ -55,19 +55,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean addUser(UserDTO userDTO) {
-        log.info("Service : Inscription de " + userDTO);
+        log.info("Service : Inscription de {}", userDTO);
 
         UserMapping userMapping = new UserMapping();
 
         User user = userMapping.userDtoToUserRepo(userDTO);
 
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            log.info("Utilisateur déjà présent : " + user.getEmail());
+            log.info("Utilisateur déjà présent {}", user.getEmail());
             return false;
         }
         user.setPassword(passwordEncoder().encode(user.getPassword()));
 
-        log.info("Nouvel utilisateur : " + user);
+        log.info("Nouvel utilisateur {}", user);
 
         userRepository.save(user);
 
@@ -80,11 +80,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(emailUser);
         User userFriend = userRepository.findByEmail(emailFriend);
         if (userFriend == null) {
-            log.info("Utilisateur inconnu : " + emailFriend);
+            log.info("Utilisateur inconnu {} ", emailFriend);
             return false;
         }
 
-        log.info("Ajout de " + emailFriend + " à la liste de " + emailUser);
+        log.info("Ajout de {} à la liste de {}", emailFriend, emailUser);
         Friend friend = Friend.builder().id(userFriend.getId()).user(userFriend).build();
         user.getFriends().add(friend);
         userRepository.save(user);
@@ -93,14 +93,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String deleteUsers() {
-        log.info("Suppression des utilisateurs.");
+        log.info("Suppression des utilisateurs");
         userRepository.deleteAll();
         return "Utilisateurs supprimés.";
     }
 
     @Override
     public User findUser(String email) {
-        log.info("Recherche d'un utilisateur :");
+        log.info("Recherche d'un utilisateur {}", email);
         return userRepository.findByEmail(email);
     }
 

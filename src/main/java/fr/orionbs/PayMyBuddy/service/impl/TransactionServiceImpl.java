@@ -26,7 +26,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void userToUser(String emailUserSender, String emailUserCollector, float amount, String description) {
-        log.info("Service UserToUser:");
+        log.info("Service UserToUser");
 
         String dateNow = LocalDate.now().toString();
 
@@ -37,42 +37,42 @@ public class TransactionServiceImpl implements TransactionService {
                 .builder()
                 .typeOfTransaction(TypeOfTransaction.Commission)
                 .date(dateNow)
-                .amount(amount*0.05f)
-                .description("Commission sur transaction entre "+emailUserSender+" et "+emailUserCollector+".")
+                .amount(amount * 0.05f)
+                .description("Commission sur transaction entre " + emailUserSender + " et " + emailUserCollector + ".")
                 .build();
 
         bankLogsRepository.save(bankLog);
 
-        log.info("BankLog Commission rédigé et envoyé :"+bankLog);
+        log.info("BankLog Commission rédigé et envoyé {}", bankLog);
 
         Transaction transaction = Transaction
                 .builder()
                 .typeOfTransaction(TypeOfTransaction.UserToUser)
-                .amount(amount*0.95f)
+                .amount(amount * 0.95f)
                 .date(dateNow)
                 .description(description)
                 .collector(collector)
                 .sender(sender)
                 .build();
 
-        log.info("Transaction générée : " + transaction);
+        log.info("Transaction générée {}", transaction);
 
         sender.setAmount(sender.getAmount() - amount);
         sender.getTransactions().add(transaction);
         userRepository.save(sender);
 
-        log.info("Envoyeur récupéré et mis à jour : " + sender.getFullName());
+        log.info("Envoyeur récupéré et mis à jour {}", sender.getFullName());
 
-        collector.setAmount(collector.getAmount() + (amount*0.95f));
+        collector.setAmount(collector.getAmount() + (amount * 0.95f));
         collector.getTransactions().add(transaction);
         userRepository.save(collector);
 
-        log.info("Receveur récupéré et mis à jour : " + collector.getFullName());
+        log.info("Receveur récupéré et mis à jour {}", collector.getFullName());
     }
 
     @Override
     public void bankToUser(String emailUser, float amount) {
-        log.info("Service BankToUser:");
+        log.info("Service BankToUser");
 
         String dateNow = LocalDate.now().toString();
 
@@ -87,7 +87,7 @@ public class TransactionServiceImpl implements TransactionService {
                 .collector(collector)
                 .build();
 
-        log.info("Transaction générée : " + transaction);
+        log.info("Transaction générée {}", transaction);
 
         BankLog bankLog = BankLog
                 .builder()
@@ -99,13 +99,13 @@ public class TransactionServiceImpl implements TransactionService {
 
         bankLogsRepository.save(bankLog);
 
-        log.info("BankLog rédigé et envoyé :"+bankLog);
+        log.info("BankLog rédigé et envoyé :{}", bankLog);
 
         collector.setAmount(collector.getAmount() + amount);
         collector.getTransactions().add(transaction);
         userRepository.save(collector);
 
-        log.info("Receveur récupéré et mis à jour : " + collector.getFullName());
+        log.info("Receveur récupéré et mis à jour {}", collector.getFullName());
 
     }
 
@@ -116,7 +116,6 @@ public class TransactionServiceImpl implements TransactionService {
         String dateNow = LocalDate.now().toString();
 
         User sender = userRepository.findByEmail(emailUser);
-        log.info(""+sender);
 
         Transaction transaction = Transaction
                 .builder()
@@ -127,13 +126,13 @@ public class TransactionServiceImpl implements TransactionService {
                 .sender(sender)
                 .build();
 
-        log.info("Transaction générée : " + transaction);
+        log.info("Transaction générée {}", transaction);
 
         sender.setAmount(sender.getAmount() - amount);
         sender.getTransactions().add(transaction);
         userRepository.save(sender);
 
-        log.info("Envoyeur récupéré et mis à jour : " + sender.getFullName());
+        log.info("Envoyeur récupéré et mis à jour {}", sender.getFullName());
 
         BankLog bankLog = BankLog
                 .builder()
@@ -145,7 +144,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         bankLogsRepository.save(bankLog);
 
-        log.info("BankLog rédigé et envoyé :"+bankLog);
+        log.info("BankLog rédigé et envoyé {}", bankLog);
 
 
     }
